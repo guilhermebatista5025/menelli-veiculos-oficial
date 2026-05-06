@@ -1,790 +1,703 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Menelli Veículos - Os melhores carros em Linhares, Espírito Santo. Compre, financie e troque seu veículo com segurança e transparência. Fale agora pelo WhatsApp!" />
-  <meta name="keywords" content="veículos Linhares, carros Linhares, comprar carro ES, Menelli Veículos, carros usados Linhares, financiamento veículos Espírito Santo" />
-  <meta name="author" content="Menelli Veículos LTDA" />
-  <meta name="robots" content="index, follow" />
-  <title>Menelli Veículos | Seu Próximo Carro em Linhares - ES</title>
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Menelli Veículos | Linhares - ES" />
-  <meta property="og:description" content="Encontre o carro dos seus sonhos em Linhares. Atendimento personalizado, financiamento facilitado e os melhores veículos do Espírito Santo." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://menelliveiculos.com.br" />
-  <meta property="og:image" content="https://menelliveiculos.com.br/og-image.jpg" />
-  <meta property="og:locale" content="pt_BR" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Menelli Veículos | Linhares - ES" />
-  <meta name="twitter:description" content="Encontre o carro dos seus sonhos em Linhares. Atendimento personalizado e financiamento facilitado." />
-
-  <!-- Schema Markup -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AutoDealer",
-    "name": "Menelli Veículos LTDA",
-    "url": "https://menelliveiculos.com.br",
-    "logo": "https://menelliveiculos.com.br/logo.png",
-    "telephone": "+552799984-9266",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Vitória, Nº 1706",
-      "addressLocality": "Linhares",
-      "addressRegion": "ES",
-      "postalCode": "29900-081",
-      "addressCountry": "BR"
-    },
-    "openingHours": "Mo-Sa 08:00-18:00",
-    "sameAs": ["https://instagram.com/menelliveiculos"]
-  }
-  </script>
-
-  <!-- Google Fonts -->
+  <title>Menelli Veículos — Seu próximo carro está aqui</title>
+  <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
-
-    <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
+
 <body>
 
-<!-- ============================================================
-     LOADING SCREEN
-============================================================ -->
-<div id="loading-screen" aria-hidden="true">
-  <div class="loader-logo">MENELLI <span>VEÍCULOS</span></div>
-  <div class="loader-bar"></div>
-</div>
-
-<!-- ============================================================
-     MOBILE NAV
-============================================================ -->
-<nav class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Menu mobile">
-  <a href="#hero" onclick="closeMobile()">Início</a>
-  <a href="#vehicles" onclick="closeMobile()">Veículos</a>
-  <a href="#process" onclick="closeMobile()">Como Comprar</a>
-  <a href="#proof" onclick="closeMobile()">Clientes</a>
-  <a href="#faq" onclick="closeMobile()">FAQ</a>
-  <a href="#cta-final" onclick="closeMobile()" style="color:var(--amber)">Falar Agora</a>
-</nav>
-
-<!-- ============================================================
-     NAVBAR
-============================================================ -->
-<header id="navbar" role="banner">
-  <a href="#hero" class="nav-logo" aria-label="Menelli Veículos - Início">MENELLI <span>VEÍCULOS</span></a>
-
-  <ul class="nav-links" role="list">
-    <li><a href="#vehicles">Veículos</a></li>
-    <li><a href="#benefits">Benefícios</a></li>
-    <li><a href="#process">Como Comprar</a></li>
-    <li><a href="#proof">Depoimentos</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="https://wa.me/5527999849266?text=Olá!%20Quero%20conhecer%20os%20veículos%20disponíveis." target="_blank" rel="noopener" class="nav-cta">Falar pelo WhatsApp</a></li>
-  </ul>
-
-  <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</header>
-
-<!-- ============================================================
-     HERO
-============================================================ -->
-<main>
-<section id="hero" aria-labelledby="hero-title">
-  <div class="hero-bg">
-    <div class="hero-shape hs1"></div>
-    <div class="hero-shape hs2"></div>
-  </div>
-
-  <div class="hero-content">
-    <div class="hero-badge reveal">
-      <span class="badge-dot"></span>
-      Linhares · Espírito Santo · Desde 2010
-    </div>
-
-    <h1 class="hero-h1 reveal reveal-d1" id="hero-title">
-      SEU PRÓXIMO CARRO
-      <em>ESTÁ AQUI.</em>
-    </h1>
-
-    <p class="hero-sub reveal reveal-d2">
-      Os melhores veículos de Linhares com atendimento personalizado, financiamento facilitado e transparência total em cada negociação.
-    </p>
-
-    <div class="hero-actions reveal reveal-d3">
-      <a href="https://wa.me/5527999849266?text=Olá!%20Vi%20o%20site%20e%20quero%20ver%20os%20veículos%20disponíveis." target="_blank" rel="noopener" class="btn-primary ripple-container" aria-label="Ver veículos disponíveis pelo WhatsApp">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Ver Veículos Disponíveis
-      </a>
-      <a href="#vehicles" class="btn-outline">
-        Conhecer a Loja
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
-
-  <div class="scroll-hint" aria-hidden="true">
-    <span>Rolar</span>
-    <div class="scroll-hint-line"></div>
-  </div>
-</section>
-
-<!-- ============================================================
-     PAIN + STATS
-============================================================ -->
-<section id="pain" aria-labelledby="pain-title">
-  <div class="pain-grid">
-    <div class="pain-visual reveal">
-      <div class="pain-visual-inner">
-        <!-- Car silhouette SVG -->
-        <svg class="car-svg" width="280" height="130" viewBox="0 0 280 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M60 90 L40 90 C32 90 28 85 28 78 L30 70 L55 68 L80 40 L200 35 L235 65 L255 68 L256 78 C256 85 252 90 244 90 L220 90" stroke="#ff9700" stroke-width="2" fill="none"/>
-          <path d="M85 42 L100 25 L190 22 L220 42" stroke="#ff9700" stroke-width="1.5" fill="rgba(255,151,0,0.04)"/>
-          <circle cx="75" cy="90" r="20" stroke="#ff9700" stroke-width="2" fill="rgba(255,151,0,0.06)"/>
-          <circle cx="205" cy="90" r="20" stroke="#ff9700" stroke-width="2" fill="rgba(255,151,0,0.06)"/>
-          <circle cx="75" cy="90" r="9" fill="rgba(255,151,0,0.15)"/>
-          <circle cx="205" cy="90" r="9" fill="rgba(255,151,0,0.15)"/>
-          <line x1="28" y1="70" x2="256" y2="70" stroke="rgba(255,151,0,0.2)" stroke-width="1" stroke-dasharray="4 4"/>
-        </svg>
-        <p style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.1em;color:rgba(255,151,0,0.6);">MENELLI VEÍCULOS — LINHARES/ES</p>
+  <!-- ===== TOP BAR ===== -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__left">
+        <span><i class="fas fa-map-marker-alt"></i> Linhares – ES</span>
+        <span><i class="fas fa-clock"></i> Seg–Sex: 08h–18h | Sáb: 08h–13h</span>
       </div>
-    </div>
-
-    <div>
-      <span class="section-label reveal">O Problema</span>
-      <h2 class="section-title reveal reveal-d1" id="pain-title">
-        CANSADO DE NÃO SABER<br/>
-        <span>ONDE ENCONTRAR</span><br/>
-        O CARRO CERTO?
-      </h2>
-      <p class="section-desc reveal reveal-d2">
-        A maioria das pessoas perde horas visitando lojas sem saber se o carro que quer está disponível. Na Menelli Veículos você vê online, escolhe com calma e visita quando quiser.
-      </p>
-
-      <div class="stats-row">
-        <div class="stat-card reveal reveal-d2">
-          <div class="stat-num" data-count="500" data-suffix="+">0+</div>
-          <div class="stat-label">Veículos Vendidos</div>
-        </div>
-        <div class="stat-card reveal reveal-d3">
-          <div class="stat-num" data-count="14" data-suffix=" Anos">0</div>
-          <div class="stat-label">De Experiência</div>
-        </div>
-        <div class="stat-card reveal reveal-d4">
-          <div class="stat-num" data-count="98" data-suffix="%">0%</div>
-          <div class="stat-label">Clientes Satisfeitos</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SVG Wave -->
-<div class="wave-divider" aria-hidden="true">
-  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:-2px">
-    <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#040404"/>
-  </svg>
-</div>
-
-<!-- ============================================================
-     BENEFITS
-============================================================ -->
-<section id="benefits" aria-labelledby="benefits-title">
-  <div class="benefits-header">
-    <span class="section-label reveal">Por Que Escolher</span>
-    <h2 class="section-title reveal reveal-d1" id="benefits-title">
-      O QUE A MENELLI<br/><span>OFERECE A VOCÊ</span>
-    </h2>
-    <p class="section-desc reveal reveal-d2">
-      Mais do que vender um carro, queremos transformar a sua experiência de compra em algo simples, seguro e satisfatório.
-    </p>
-  </div>
-
-  <div class="benefits-grid">
-    <div class="benefit-card reveal">
-      <div class="benefit-icon" aria-hidden="true">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      </div>
-      <h3 class="benefit-title">Veículos Revisados</h3>
-      <p class="benefit-text">Todos os veículos passam por inspeção completa antes de serem colocados à venda. Você compra com total segurança e transparência.</p>
-    </div>
-
-    <div class="benefit-card reveal reveal-d1">
-      <div class="benefit-icon" aria-hidden="true">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
-      </div>
-      <h3 class="benefit-title">Financiamento Facilitado</h3>
-      <p class="benefit-text">Trabalhamos com os principais bancos para facilitar seu financiamento. Aprovação rápida, parcelas que cabem no seu bolso.</p>
-    </div>
-
-    <div class="benefit-card reveal reveal-d2">
-      <div class="benefit-icon" aria-hidden="true">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
-      </div>
-      <h3 class="benefit-title">Troca Sem Burocracia</h3>
-      <p class="benefit-text">Quer trocar seu carro por um modelo mais novo? Avaliamos seu veículo na hora e fazemos a melhor proposta do mercado.</p>
-    </div>
-
-    <div class="benefit-card reveal">
-      <div class="benefit-icon" aria-hidden="true">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-      </div>
-      <h3 class="benefit-title">Atendimento Humanizado</h3>
-      <p class="benefit-text">Não somos robôs. Nossos consultores escutam suas necessidades e indicam o veículo ideal para o seu perfil e orçamento.</p>
-    </div>
-
-    <div class="benefit-card reveal reveal-d1">
-      <div class="benefit-icon" aria-hidden="true">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 9m0 8V9m0 0L9 7"/></svg>
-      </div>
-      <h3 class="benefit-title">Amplo Estoque Online</h3>
-      <p class="benefit-text">Veja nosso estoque completo sem sair de casa. Fotos reais, detalhes técnicos e preço justo para você comparar com tranquilidade.</p>
-    </div>
-
-    <div class="benefit-card reveal reveal-d2">
-      <div class="benefit-icon" aria-hidden="true">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <h3 class="benefit-title">Documentação Garantida</h3>
-      <p class="benefit-text">Toda documentação conferida e regularizada. Zero surpresas após a compra. Você sai com tudo em ordem, pronto para rodar.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     VEHICLES
-============================================================ -->
-<section id="vehicles" aria-labelledby="vehicles-title">
-  <div class="vehicles-header">
-    <div>
-      <span class="section-label reveal">Estoque</span>
-      <h2 class="section-title reveal reveal-d1" id="vehicles-title">NOSSOS <span>VEÍCULOS</span></h2>
-    </div>
-    <a href="https://wa.me/5527999849266?text=Quero%20ver%20todos%20os%20veículos%20disponíveis!" target="_blank" rel="noopener" class="btn-outline reveal">
-      Ver Estoque Completo
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-  </div>
-
-  <div class="vehicles-grid">
-    <!-- Card 1 -->
-    <article class="vehicle-card reveal" onclick="openWA('Olá! Tenho interesse em um Sedan. Podem me mostrar as opções disponíveis?')">
-      <div class="vehicle-img">
-        <div class="vehicle-img-glow"></div>
-        <svg width="260" height="110" viewBox="0 0 260 110" fill="none">
-          <path d="M30 80 L20 80 C14 80 11 76 11 71 L13 64 L40 62 L65 38 L195 34 L225 62 L242 64 L243 71 C243 76 240 80 234 80 L220 80" stroke="#ff9700" stroke-width="1.8" fill="rgba(255,151,0,0.03)"/>
-          <path d="M68 40 L83 20 L185 18 L215 40" stroke="#ff9700" stroke-width="1.5" fill="rgba(255,151,0,0.06)"/>
-          <circle cx="55" cy="80" r="18" stroke="#ff9700" stroke-width="1.8" fill="rgba(255,151,0,0.08)"/>
-          <circle cx="205" cy="80" r="18" stroke="#ff9700" stroke-width="1.8" fill="rgba(255,151,0,0.08)"/>
-          <circle cx="55" cy="80" r="7" fill="rgba(255,151,0,0.2)"/>
-          <circle cx="205" cy="80" r="7" fill="rgba(255,151,0,0.2)"/>
-          <rect x="120" y="22" width="50" height="22" rx="3" fill="rgba(255,151,0,0.07)" stroke="rgba(255,151,0,0.2)" stroke-width="1"/>
-        </svg>
-      </div>
-      <div class="vehicle-body">
-        <span class="vehicle-tag">Popular</span>
-        <h3 class="vehicle-name">Sedans & Hatches</h3>
-        <p class="vehicle-desc">Econômicos, versáteis e perfeitos para o dia a dia. Ideal para quem está comprando o primeiro carro.</p>
-        <span class="vehicle-cta">
-          Consultar disponibilidade
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
-      </div>
-    </article>
-
-    <!-- Card 2 -->
-    <article class="vehicle-card reveal reveal-d1" onclick="openWA('Olá! Gostaria de ver as opções de SUVs e Crossovers disponíveis.')">
-      <div class="vehicle-img">
-        <div class="vehicle-img-glow"></div>
-        <svg width="270" height="120" viewBox="0 0 270 120" fill="none">
-          <path d="M25 88 L15 88 C9 88 6 83 6 77 L8 70 L35 67 L55 35 L215 30 L240 67 L252 70 L253 77 C253 83 250 88 244 88 L230 88" stroke="#ff9700" stroke-width="1.8" fill="rgba(255,151,0,0.03)"/>
-          <rect x="55" y="30" width="160" height="40" rx="6" fill="rgba(255,151,0,0.04)" stroke="rgba(255,151,0,0.15)" stroke-width="1.2"/>
-          <circle cx="55" cy="88" r="20" stroke="#ff9700" stroke-width="1.8" fill="rgba(255,151,0,0.08)"/>
-          <circle cx="215" cy="88" r="20" stroke="#ff9700" stroke-width="1.8" fill="rgba(255,151,0,0.08)"/>
-          <circle cx="55" cy="88" r="8" fill="rgba(255,151,0,0.2)"/>
-          <circle cx="215" cy="88" r="8" fill="rgba(255,151,0,0.2)"/>
-          <rect x="90" y="36" width="80" height="16" rx="2" fill="rgba(255,151,0,0.08)"/>
-        </svg>
-      </div>
-      <div class="vehicle-body">
-        <span class="vehicle-tag">Alta Demanda</span>
-        <h3 class="vehicle-name">SUVs & Crossovers</h3>
-        <p class="vehicle-desc">Conforto, espaço e versatilidade para toda a família. Modelos que combinam estilo urbano com robustez.</p>
-        <span class="vehicle-cta">
-          Consultar disponibilidade
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
-      </div>
-    </article>
-
-    <!-- Card 3 -->
-    <article class="vehicle-card reveal reveal-d2" onclick="openWA('Olá! Quero ver as opções de pickups e utilitários disponíveis.')">
-      <div class="vehicle-img">
-        <div class="vehicle-img-glow"></div>
-        <svg width="270" height="120" viewBox="0 0 270 120" fill="none">
-          <path d="M25 85 L15 85 C9 85 6 80 6 74 L8 67 L35 64 L55 40 L130 36 L130 64 L250 64 L252 74 C252 80 249 85 243 85 L225 85" stroke="#ff9700" stroke-width="1.8" fill="rgba(255,151,0,0.03)"/>
-          <rect x="55" y="36" width="75" height="30" rx="4" fill="rgba(255,151,0,0.05)" stroke="rgba(255,151,0,0.18)" stroke-width="1.2"/>
-          <rect x="130" y="48" width="120" height="18" rx="3" fill="rgba(255,151,0,0.03)" stroke="rgba(255,151,0,0.12)" stroke-width="1"/>
-          <circle cx="55" cy="85" r="20" stroke="#ff9700" stroke-width="1.8" fill="rgba(255,151,0,0.08)"/>
-          <circle cx="215" cy="85" r="20" stroke="#ff9700" stroke-width="1.8" fill="rgba(255,151,0,0.08)"/>
-          <circle cx="55" cy="85" r="8" fill="rgba(255,151,0,0.2)"/>
-          <circle cx="215" cy="85" r="8" fill="rgba(255,151,0,0.2)"/>
-        </svg>
-      </div>
-      <div class="vehicle-body">
-        <span class="vehicle-tag">Trabalho & Lazer</span>
-        <h3 class="vehicle-name">Pickups & Utilitários</h3>
-        <p class="vehicle-desc">Potência e capacidade para quem precisa de um veículo que trabalha tanto quanto você. Resistência e tecnologia.</p>
-        <span class="vehicle-cta">
-          Consultar disponibilidade
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ============================================================
-     BEFORE VS AFTER — WOW SECTION
-============================================================ -->
-<section id="comparison" aria-labelledby="comparison-title">
-  <div class="comparison-wrap">
-    <div class="comparison-header reveal">
-      <span class="section-label" style="justify-content:center">Transformação</span>
-      <h2 class="section-title" style="font-size:clamp(2rem,5vw,3.8rem)" id="comparison-title">
-        COMPRAR UM CARRO ANTES<br/>
-        <span>VS COMPRAR NA MENELLI</span>
-      </h2>
-      <p class="section-desc" style="margin:0 auto">Veja como a nossa abordagem transforma completamente a experiência de comprar um veículo.</p>
-    </div>
-
-    <div class="compare-grid reveal reveal-d1">
-      <div class="compare-side before">
-        <div class="compare-tag before-tag">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-          Sem a Menelli
-        </div>
-        <div class="compare-item bad">
-          <span class="icon">✕</span>
-          <span>Visitar dezenas de lojas sem saber o estoque</span>
-        </div>
-        <div class="compare-item bad">
-          <span class="icon">✕</span>
-          <span>Preços escondidos e taxas surpresa no final</span>
-        </div>
-        <div class="compare-item bad">
-          <span class="icon">✕</span>
-          <span>Vendedores que pressionam sem te ouvir</span>
-        </div>
-        <div class="compare-item bad">
-          <span class="icon">✕</span>
-          <span>Documentação demorada e burocrática</span>
-        </div>
-        <div class="compare-item bad">
-          <span class="icon">✕</span>
-          <span>Veículos sem revisão — risco de problemas</span>
-        </div>
-        <div class="compare-item bad">
-          <span class="icon">✕</span>
-          <span>Financiamento complicado e taxas abusivas</span>
-        </div>
-      </div>
-
-      <div class="compare-side after">
-        <div class="compare-tag after-tag">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          Com a Menelli
-        </div>
-        <div class="compare-item good">
-          <span class="icon">✓</span>
-          <span>Estoque completo online, disponível 24h</span>
-        </div>
-        <div class="compare-item good">
-          <span class="icon">✓</span>
-          <span>Preço justo, transparente e sem surpresas</span>
-        </div>
-        <div class="compare-item good">
-          <span class="icon">✓</span>
-          <span>Consultor que escuta e indica o carro ideal</span>
-        </div>
-        <div class="compare-item good">
-          <span class="icon">✓</span>
-          <span>Documentação rápida e 100% regularizada</span>
-        </div>
-        <div class="compare-item good">
-          <span class="icon">✓</span>
-          <span>Veículos revisados e com garantia de procedência</span>
-        </div>
-        <div class="compare-item good">
-          <span class="icon">✓</span>
-          <span>Financiamento com aprovação rápida e fácil</span>
-        </div>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:48px" class="reveal">
-      <a href="https://wa.me/5527999849266?text=Quero%20comprar%20meu%20carro%20na%20Menelli%20Veículos!" target="_blank" rel="noopener" class="btn-primary">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Quero Comprar Meu Carro Agora
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     PROOF / TESTIMONIALS
-============================================================ -->
-<section id="proof" aria-labelledby="proof-title">
-  <span class="section-label reveal" style="justify-content:center">Resultados Reais</span>
-  <h2 class="section-title reveal reveal-d1" style="text-align:center" id="proof-title">
-    QUEM COMPROU <span>APROVOU</span>
-  </h2>
-  <p class="section-desc reveal reveal-d2" style="text-align:center;margin:0 auto">
-    Centenas de famílias de Linhares e região encontraram seu veículo ideal na Menelli. Veja o que dizem.
-  </p>
-
-  <div class="proof-grid">
-    <div class="proof-card reveal">
-      <span class="stars">★★★★★</span>
-      <span class="proof-num" data-count="500" data-suffix="+">0+</span>
-      <p class="proof-label">Veículos Vendidos</p>
-    </div>
-    <div class="proof-card reveal reveal-d1">
-      <span class="stars">★★★★★</span>
-      <span class="proof-num" data-count="14" data-suffix=" Anos">0</span>
-      <p class="proof-label">No Mercado</p>
-    </div>
-    <div class="proof-card reveal reveal-d2">
-      <span class="stars">★★★★★</span>
-      <span class="proof-num" data-count="4" data-suffix=".9★">0</span>
-      <p class="proof-label">Avaliação Média</p>
-    </div>
-    <div class="proof-card reveal reveal-d3">
-      <span class="stars">★★★★★</span>
-      <span class="proof-num" data-count="98" data-suffix="%">0%</span>
-      <p class="proof-label">Satisfação</p>
-    </div>
-  </div>
-
-  <div class="testimonials">
-    <div class="testi-card reveal">
-      <div class="stars" aria-label="5 estrelas" style="font-size:0.9rem;margin-bottom:14px">★★★★★</div>
-      <p class="testi-text">"Comprei meu primeiro carro na Menelli e foi a melhor decisão. Processo super simples, sem pressão e o consultor me ajudou a escolher o veículo certo para o meu orçamento."</p>
-      <div class="testi-author">
-        <div class="testi-avatar" aria-hidden="true">M</div>
-        <div>
-          <div class="testi-name">Marcos Pereira</div>
-          <div class="testi-city">Linhares - ES</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="testi-card reveal reveal-d1">
-      <div class="stars" aria-label="5 estrelas" style="font-size:0.9rem;margin-bottom:14px">★★★★★</div>
-      <p class="testi-text">"Fiz a troca do meu carro antigo por um SUV aqui. Avaliaram meu veículo de forma justa e não tive nenhuma burocracia. Recomendo pra todo mundo de Linhares!"</p>
-      <div class="testi-author">
-        <div class="testi-avatar" aria-hidden="true">A</div>
-        <div>
-          <div class="testi-name">Ana Carolina</div>
-          <div class="testi-city">Linhares - ES</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="testi-card reveal reveal-d2">
-      <div class="stars" aria-label="5 estrelas" style="font-size:0.9rem;margin-bottom:14px">★★★★★</div>
-      <p class="testi-text">"Financiamento aprovado rapidinho, documentação toda certa e saí dirigindo no mesmo dia. Atendimento de primeiríssima qualidade. Já indiquei pra toda a família."</p>
-      <div class="testi-author">
-        <div class="testi-avatar" aria-hidden="true">R</div>
-        <div>
-          <div class="testi-name">Ricardo Santos</div>
-          <div class="testi-city">Colatina - ES</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     PROCESS / TIMELINE
-============================================================ -->
-<section id="process" aria-labelledby="process-title">
-  <div class="process-header">
-    <span class="section-label reveal">Passo a Passo</span>
-    <h2 class="section-title reveal reveal-d1" id="process-title">
-      COMO COMPRAR SEU<br/><span>CARRO NA MENELLI</span>
-    </h2>
-    <p class="section-desc reveal reveal-d2">
-      Em apenas 4 passos simples você sai com o carro dos seus sonhos. Sem complicação, sem surpresa.
-    </p>
-  </div>
-
-  <div class="timeline">
-    <div class="tl-item reveal">
-      <div class="tl-num" aria-hidden="true">01</div>
-      <div class="tl-body">
-        <h3 class="tl-title">Escolha Seu Veículo</h3>
-        <p class="tl-desc">Navegue pelo nosso estoque online ou entre em contato pelo WhatsApp. Nosso consultor te apresenta todas as opções disponíveis com detalhes e fotos reais.</p>
-      </div>
-    </div>
-    <div class="tl-item reveal reveal-d1">
-      <div class="tl-num" aria-hidden="true">02</div>
-      <div class="tl-body">
-        <h3 class="tl-title">Agende Uma Visita</h3>
-        <p class="tl-desc">Venha conhecer o veículo pessoalmente. Faça um test drive, tire todas as suas dúvidas e veja o estado real do carro. Estamos na Av. Vitória, 1706 - Centro de Linhares.</p>
-      </div>
-    </div>
-    <div class="tl-item reveal reveal-d2">
-      <div class="tl-num" aria-hidden="true">03</div>
-      <div class="tl-body">
-        <h3 class="tl-title">Escolha a Forma de Pagamento</h3>
-        <p class="tl-desc">À vista com desconto especial, parcelado no cartão ou financiamento bancário facilitado. Analisamos a melhor opção para o seu perfil financeiro.</p>
-      </div>
-    </div>
-    <div class="tl-item reveal reveal-d3">
-      <div class="tl-num" aria-hidden="true">04</div>
-      <div class="tl-body">
-        <h3 class="tl-title">Pegue as Chaves e Dirija!</h3>
-        <p class="tl-desc">Documentação assinada, transferência garantida. Você sai com tudo regularizado e pronto para rodar com o seu novo veículo. Simples assim!</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     FAQ
-============================================================ -->
-<section id="faq" aria-labelledby="faq-title">
-  <div class="faq-header">
-    <span class="section-label reveal">Dúvidas Frequentes</span>
-    <h2 class="section-title reveal reveal-d1" id="faq-title">
-      PERGUNTAS <span>FREQUENTES</span>
-    </h2>
-    <p class="section-desc reveal reveal-d2">
-      Temos respostas para as dúvidas mais comuns. Não encontrou o que procura? Fale conosco pelo WhatsApp.
-    </p>
-  </div>
-
-  <div class="faq-list reveal" role="list">
-    <div class="faq-item" role="listitem">
-      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
-        Vocês aceitam financiamento?
-        <span class="faq-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="faq-a" role="region">Sim! Trabalhamos com os principais bancos e financeiras do mercado. Aprovação rápida e condições facilitadas, mesmo para negativados em alguns casos. Entre em contato e veja as opções disponíveis.</div>
-    </div>
-
-    <div class="faq-item" role="listitem">
-      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
-        Posso usar meu carro como entrada?
-        <span class="faq-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="faq-a" role="region">Com certeza! Avaliamos seu veículo com preço justo e utilizamos o valor como entrada na compra do seu próximo carro. O processo é rápido e transparente.</div>
-    </div>
-
-    <div class="faq-item" role="listitem">
-      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
-        Os veículos têm garantia?
-        <span class="faq-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="faq-a" role="region">Todos os veículos passam por revisão antes da venda. Oferecemos garantia de procedência e trabalhamos com documentação 100% regularizada. Seu investimento está seguro.</div>
-    </div>
-
-    <div class="faq-item" role="listitem">
-      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
-        Atendem outras cidades do ES?
-        <span class="faq-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="faq-a" role="region">Sim! Atendemos clientes de toda a região do Espírito Santo. Muitos clientes vêm de Colatina, São Mateus, Aracruz e outras cidades vizinhas. Fale conosco e encontre a melhor solução.</div>
-    </div>
-
-    <div class="faq-item" role="listitem">
-      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
-        Qual o horário de atendimento?
-        <span class="faq-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="faq-a" role="region">Atendemos de segunda a sábado, das 8h às 18h. Pelo WhatsApp você pode entrar em contato a qualquer hora e um consultor retornará o mais breve possível.</div>
-    </div>
-
-    <div class="faq-item" role="listitem">
-      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
-        Como faço para agendar um test drive?
-        <span class="faq-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="faq-a" role="region">É simples! Basta entrar em contato pelo WhatsApp, escolher o veículo de interesse e marcar um horário. Estamos na Av. Vitória, 1706 - Centro de Linhares, ES.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     CTA FINAL
-============================================================ -->
-<section id="cta-final" aria-labelledby="cta-final-title">
-  <div class="cta-final-content">
-    <span class="section-label reveal" style="justify-content:center">Não Espere Mais</span>
-    <h2 class="cta-final-title reveal reveal-d1" id="cta-final-title">
-      SEU CARRO IDEAL<br/>
-      <span>TE AGUARDA</span>
-    </h2>
-    <p class="cta-final-sub reveal reveal-d2">
-      Entre em contato agora, sem compromisso. Nosso consultor vai te ajudar a encontrar o veículo perfeito para o seu perfil e orçamento.
-    </p>
-    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center" class="reveal reveal-d3">
-      <a href="https://wa.me/5527999849266?text=Olá!%20Quero%20encontrar%20o%20meu%20carro%20ideal%20na%20Menelli%20Veículos." target="_blank" rel="noopener" class="btn-primary" style="font-size:1.05rem;padding:18px 44px">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Falar no WhatsApp Agora
-      </a>
-      <a href="https://instagram.com/menelliveiculos" target="_blank" rel="noopener" class="btn-outline">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        Ver no Instagram
-      </a>
-    </div>
-  </div>
-</section>
-</main>
-
-<!-- ============================================================
-     FOOTER
-============================================================ -->
-<footer role="contentinfo">
-  <div class="footer-grid">
-    <div>
-      <div class="footer-brand-name">MENELLI <span>VEÍCULOS</span></div>
-      <p class="footer-brand-desc">Há mais de 14 anos conectando pessoas aos melhores veículos de Linhares e região com transparência, qualidade e atendimento humanizado.</p>
-      <div class="footer-socials">
-        <a href="https://instagram.com/menelliveiculos" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram Menelli Veículos">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <a href="https://wa.me/5527999849266" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp Menelli Veículos">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="footer-col">
-      <h4>Navegação</h4>
-      <ul>
-        <li><a href="#vehicles">Veículos</a></li>
-        <li><a href="#benefits">Benefícios</a></li>
-        <li><a href="#process">Como Comprar</a></li>
-        <li><a href="#proof">Depoimentos</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Serviços</h4>
-      <ul>
-        <li><a href="https://wa.me/5527999849266?text=Quero%20informações%20sobre%20financiamento" target="_blank" rel="noopener">Financiamento</a></li>
-        <li><a href="https://wa.me/5527999849266?text=Quero%20fazer%20uma%20troca%20de%20veículo" target="_blank" rel="noopener">Troca de Veículos</a></li>
-        <li><a href="https://wa.me/5527999849266?text=Quero%20agendar%20um%20test%20drive" target="_blank" rel="noopener">Test Drive</a></li>
-        <li><a href="https://wa.me/5527999849266?text=Preciso%20de%20ajuda%20com%20documentação" target="_blank" rel="noopener">Documentação</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col footer-contact">
-      <h4>Contato</h4>
-      <p>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Av. Vitória, Nº 1706 – Centro, Linhares/ES – CEP 29900-081
-      </p>
-      <p>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.08 6.08l1.29-1.29a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0121 14.92z"/></svg>
-        <a href="tel:+5527999849266" style="color:inherit">(27) 99984-9266</a>
-      </p>
-      <p>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
-        Seg. – Sáb. · 8h às 18h
-      </p>
-      <div class="map-box">
-        <a href="https://maps.google.com/?q=Av.+Vitória+1706+Centro+Linhares+ES" target="_blank" rel="noopener" class="map-link" aria-label="Ver localização no Google Maps">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--amber)" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Ver no Google Maps</span>
-          <span style="font-size:0.72rem;color:rgba(255,255,255,0.35)">Av. Vitória, 1706 · Linhares</span>
+      <div class="topbar__right">
+        <a href="tel:+551140020800"><i class="fas fa-phone"></i> (27) 99984-9266</a>
+        <a href="https://wa.me/552799984-9266" target="_blank" class="btn-whatsapp-top">
+          <i class="fab fa-whatsapp"></i> WhatsApp
         </a>
       </div>
     </div>
   </div>
 
-  <div class="footer-bottom">
-    <span>© 2025 Menelli Veículos LTDA · CNPJ: XX.XXX.XXX/0001-XX · Todos os direitos reservados.</span>
-    <span>Linhares · Espírito Santo · Brasil</span>
-  </div>
-</footer>
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#" class="logo">
+        <img src="imagens/logo/logo.png" alt="Menelli Veículos" class="logo__img">
+      </a>
 
-<!-- ============================================================
-     FLOATING WHATSAPP + MINI CHAT
-============================================================ -->
-<div id="wa-fab" aria-label="Contato WhatsApp">
-  <span class="wa-online" aria-live="polite">● Online agora</span>
-  <button class="wa-btn" onclick="toggleChat()" aria-haspopup="dialog" aria-expanded="false" aria-label="Abrir chat de atendimento">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </button>
-</div>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="#inicio" class="nav__link active">Início</a></li>
+          <li class="nav__item has-dropdown">
+            <a href="#estoque" class="nav__link">Estoque <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+              <li><a href="#estoque">Carros 0 km</a></li>
+              <li><a href="#seminovos">Seminovos</a></li>
+              <li><a href="#caminhonetes">Caminhonetes</a></li>
+              <li><a href="#suvs">SUVs & Crossovers</a></li>
+            </ul>
+          </li>
+          <li class="nav__item has-dropdown">
+            <a href="#" class="nav__link">Financiamento <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+              <li><a href="#financiamento">Simule seu crédito</a></li>
+              <li><a href="#consorcio">Consórcio</a></li>
+              <li><a href="#pcd">PCD / Deficiente</a></li>
+            </ul>
+          </li>
+          <li class="nav__item has-dropdown">
+            <a href="#" class="nav__link">Pós-Venda <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+              <li><a href="#servicos">Revisão &amp; Serviços</a></li>
+              <li><a href="#pecas">Peças &amp; Acessórios</a></li>
+              <li><a href="#garantia">Garantia</a></li>
+            </ul>
+          </li>
+          <li class="nav__item"><a href="#sobre" class="nav__link">Quem Somos</a></li>
+          <li class="nav__item"><a href="#contato" class="nav__link">Contato</a></li>
+        </ul>
+      </nav>
 
-<div id="mini-chat" role="dialog" aria-modal="true" aria-label="Chat de atendimento">
-  <div class="chat-header">
-    <div class="chat-header-left">
-      <div class="chat-avatar" aria-hidden="true">MV</div>
-      <div>
-        <div class="chat-header-name">Menelli Veículos</div>
-        <div class="chat-header-status">● Online · Responde em minutos</div>
-      </div>
-    </div>
-    <button class="chat-close" onclick="toggleChat()" aria-label="Fechar chat">✕</button>
-  </div>
-  <div class="chat-body">
-    <div class="chat-bubble">
-      Olá! Como posso te ajudar hoje? <span class="typing-cursor" id="typing-cursor" aria-hidden="true"></span>
-    </div>
-    <div class="quick-replies" role="group" aria-label="Opções rápidas">
-      <button class="qr-btn" onclick="openWA('Quero ver os veículos disponíveis! Pode me mostrar o estoque?')">🚗 Ver veículos disponíveis</button>
-      <button class="qr-btn" onclick="openWA('Gostaria de informações sobre financiamento. Quais são as condições?')">💳 Quero financiar meu carro</button>
-      <button class="qr-btn" onclick="openWA('Tenho interesse em trocar meu carro. Como funciona a avaliação?')">🔄 Fazer troca do meu carro</button>
-    </div>
-    <div class="chat-input-row">
-      <input
-        type="text"
-        class="chat-input"
-        id="chat-input"
-        placeholder="Digite sua mensagem..."
-        aria-label="Mensagem para a Menelli Veículos"
-        onkeydown="if(event.key==='Enter') sendChat()"
-      />
-      <button class="chat-send" onclick="sendChat()" aria-label="Enviar mensagem">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
       </button>
     </div>
+  </header>
+
+  <!-- ===== HERO SLIDER ===== -->
+  <section class="hero" id="inicio">
+    <div class="hero__slides">
+
+      <div class="hero__slide active"
+        style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80')">
+        <div class="hero__overlay"></div>
+        <div class="container hero__content">
+          <span class="hero__tag">Oferta Exclusiva</span>
+          <h1 class="hero__title">Realize o sonho<br /><span>do seu carro ideal</span></h1>
+          <p class="hero__sub">As melhores condições de financiamento com taxa a partir de <strong>0,79% ao mês</strong>
+          </p>
+          <div class="hero__actions">
+            <a href="#estoque" class="btn btn--gold">Ver Estoque</a>
+            <a href="#financiamento" class="btn btn--outline">Simular Financiamento</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__slide"
+        style="background-image: url('https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1600&q=80')">
+        <div class="hero__overlay"></div>
+        <div class="container hero__content">
+          <span class="hero__tag">Seminovos Certificados</span>
+          <h1 class="hero__title">Seminovos com<br /><span>procedência garantida</span></h1>
+          <p class="hero__sub">Laudos, revisão completa e garantia de fábrica em todos os veículos</p>
+          <div class="hero__actions">
+            <a href="#seminovos" class="btn btn--gold">Ver Seminovos</a>
+            <a href="https://wa.me/5511940020800" class="btn btn--outline" target="_blank"><i
+                class="fab fa-whatsapp"></i> Fale Conosco</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__slide"
+        style="background-image: url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1600&q=80')">
+        <div class="hero__overlay"></div>
+        <div class="container hero__content">
+          <span class="hero__tag">SUVs &amp; Premium</span>
+          <h1 class="hero__title">SUVs e utilitários<br /><span>para todos os estilos</span></h1>
+          <p class="hero__sub">Do campo à cidade, encontre o veículo perfeito para a sua família</p>
+          <div class="hero__actions">
+            <a href="#suvs" class="btn btn--gold">Explorar SUVs</a>
+            <a href="#contato" class="btn btn--outline">Agendar Visita</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Controles -->
+    <button class="hero__arrow hero__arrow--prev" id="heroePrev"><i class="fas fa-chevron-left"></i></button>
+    <button class="hero__arrow hero__arrow--next" id="heroNext"><i class="fas fa-chevron-right"></i></button>
+    <div class="hero__dots" id="heroDots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </section>
+
+  <!-- ===== BADGES / STATS ===== -->
+  <section class="stats">
+    <div class="container stats__grid">
+      <div class="stat-card">
+        <i class="fas fa-car"></i>
+        <div>
+          <strong>+500</strong>
+          <span>Veículos em Estoque</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-handshake"></i>
+        <div>
+          <strong>+12.000</strong>
+          <span>Clientes Satisfeitos</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-award"></i>
+        <div>
+          <strong>15 Anos</strong>
+          <span>de Tradição</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-shield-alt"></i>
+        <div>
+          <strong>Garantia</strong>
+          <span>em todos os veículos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BUSCA RÁPIDA ===== -->
+  <section class="search-bar" id="busca">
+    <div class="container">
+      <div class="search-bar__box">
+        <h2 class="search-bar__title">Encontre seu veículo</h2>
+        <div class="search-bar__form">
+          <div class="search-field">
+            <label>Tipo</label>
+            <select id="filterTipo">
+              <option value="">Todos</option>
+              <option>0 km</option>
+              <option>Seminovo</option>
+              <option>Caminhonete</option>
+              <option>SUV</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label>Marca</label>
+            <select id="filterMarca">
+              <option value="">Todas</option>
+              <option>Toyota</option>
+              <option>Honda</option>
+              <option>Chevrolet</option>
+              <option>Volkswagen</option>
+              <option>Hyundai</option>
+              <option>Jeep</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label>Preço até</label>
+            <select id="filterPreco">
+              <option value="">Qualquer</option>
+              <option value="50000">R$ 50.000</option>
+              <option value="80000">R$ 80.000</option>
+              <option value="120000">R$ 120.000</option>
+              <option value="200000">R$ 200.000</option>
+              <option value="999999">Acima de R$ 200k</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label>Modelo / Palavra-chave</label>
+            <input type="text" id="filterSearch" placeholder="Ex: HRV, Corolla, Tracker..." />
+          </div>
+          <button class="btn btn--gold search-bar__btn" id="btnBuscar">
+            <i class="fas fa-search"></i> Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ESTOQUE / DESTAQUES ===== -->
+  <section class="inventory" id="estoque">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Estoque</span>
+        <h2 class="section-title">Veículos em <span>Destaque</span></h2>
+        <p class="section-sub">Confira nossa seleção com as melhores condições do mercado</p>
+      </div>
+
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" data-filter="all">Todos</button>
+        <button class="filter-tab" data-filter="zerokm">0 km</button>
+        <button class="filter-tab" data-filter="seminovo">Seminovos</button>
+        <button class="filter-tab" data-filter="suv">SUVs</button>
+        <button class="filter-tab" data-filter="caminhonete">Caminhonetes</button>
+      </div>
+
+      <div class="cards-grid" id="cardsGrid">
+        <!-- Carros gerados via JS -->
+      </div>
+
+      <div class="inventory__more">
+        <a href="#" class="btn btn--gold-outline" id="loadMore">Carregar mais veículos <i
+            class="fas fa-arrow-down"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BANNER FINANCIAMENTO ===== -->
+  <section class="banner-finance" id="financiamento">
+    <div class="container banner-finance__inner">
+      <div class="banner-finance__text">
+        <span class="section-tag">Financiamento</span>
+        <h2>Simule seu crédito <span>em minutos</span></h2>
+        <p>Taxa a partir de <strong>0,79% ao mês</strong>. Entrada facilitada, parcelas que cabem no seu bolso.
+          Aprovação rápida, mesmo para negativados.</p>
+        <div class="banner-finance__features">
+          <div class="bf-item"><i class="fas fa-check-circle"></i> Aprovação em até 2 horas</div>
+          <div class="bf-item"><i class="fas fa-check-circle"></i> Sem burocracia excessiva</div>
+          <div class="bf-item"><i class="fas fa-check-circle"></i> Entrada a partir de 10%</div>
+          <div class="bf-item"><i class="fas fa-check-circle"></i> Parcele em até 60x</div>
+        </div>
+        <a href="https://wa.me/5511940020800" class="btn btn--gold" target="_blank">
+          <i class="fab fa-whatsapp"></i> Simular pelo WhatsApp
+        </a>
+      </div>
+      <div class="banner-finance__calc">
+        <div class="calc-box">
+          <h3>Simule aqui</h3>
+          <div class="calc-field">
+            <label>Valor do veículo</label>
+            <input type="text" id="calcValor" placeholder="R$ 0,00" />
+          </div>
+          <div class="calc-field">
+            <label>Entrada (%)</label>
+            <input type="range" id="calcEntrada" min="10" max="80" value="20" />
+            <span id="calcEntradaVal">20%</span>
+          </div>
+          <div class="calc-field">
+            <label>Parcelas</label>
+            <select id="calcParcelas">
+              <option>12x</option>
+              <option>24x</option>
+              <option selected>36x</option>
+              <option>48x</option>
+              <option>60x</option>
+            </select>
+          </div>
+          <div class="calc-result" id="calcResult">
+            <span>Parcela estimada</span>
+            <strong>R$ —</strong>
+          </div>
+          <button class="btn btn--gold w-full" id="btnCalc">Calcular</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVIÇOS ===== -->
+  <section class="services" id="servicos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Pós-Venda</span>
+        <h2 class="section-title">Soluções que vão <span>além da venda</span></h2>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fas fa-tools"></i></div>
+          <h3>Revisão &amp; Manutenção</h3>
+          <p>Oficina completa com mecânicos certificados. Agendamento online ou pelo WhatsApp.</p>
+          <a href="https://wa.me/5511940020800" class="service-link">Agendar revisão <i
+              class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fas fa-cogs"></i></div>
+          <h3>Peças &amp; Acessórios</h3>
+          <p>Peças originais e de alto desempenho. Acessórios para personalizar seu veículo.</p>
+          <a href="#pecas" class="service-link">Ver catálogo <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fas fa-hand-holding-usd"></i></div>
+          <h3>Consórcio</h3>
+          <p>Sem juros, sem entrada. Parcelas acessíveis para você realizar o sonho do carro novo.</p>
+          <a href="#consorcio" class="service-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fas fa-exchange-alt"></i></div>
+          <h3>Troca / Avaliação</h3>
+          <p>Avaliamos seu veículo na hora. Troque com a Menelli e garanta o melhor preço.</p>
+          <a href="https://wa.me/5511940020800" class="service-link">Avaliar meu carro <i
+              class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fas fa-user-shield"></i></div>
+          <h3>Garantia Estendida</h3>
+          <p>Proteja seu investimento com nossa garantia de até 2 anos em todo o veículo.</p>
+          <a href="#garantia" class="service-link">Ver planos <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fas fa-file-contract"></i></div>
+          <h3>Documentação</h3>
+          <p>Cuidamos de todo o processo de transferência, IPVA e emplacamento por você.</p>
+          <a href="https://wa.me/5511940020800" class="service-link">Fale conosco <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MARCAS PARCEIRAS ===== -->
+  <section class="brands">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Parceiros</span>
+        <h2 class="section-title">Marcas que <span>Trabalhamos</span></h2>
+      </div>
+      <div class="brands-track">
+        <!-- Faixa 1: esquerda → direita (direção normal) -->
+        <div class="brands-list brands-list--ltr">
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/toyota.svg"
+              alt="Toyota">TOYOTA</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/honda.svg"
+              alt="Honda">HONDA</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/chevrolet.svg"
+              alt="Chevrolet">CHEVROLET</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/volkswagen.svg"
+              alt="Volkswagen">VOLKSWAGEN</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/hyundai.svg"
+              alt="Hyundai">HYUNDAI</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/jeep.svg"
+              alt="Jeep">JEEP</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/nissan.svg"
+              alt="Nissan">NISSAN</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/mitsubishi.svg"
+              alt="Mitsubishi">MITSUBISHI</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/ford.svg"
+              alt="Ford">FORD</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/kia.svg"
+              alt="Kia">KIA</div>
+          <!-- Duplicados -->
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/toyota.svg"
+              alt="Toyota">TOYOTA</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/honda.svg"
+              alt="Honda">HONDA</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/chevrolet.svg"
+              alt="Chevrolet">CHEVROLET</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/volkswagen.svg"
+              alt="Volkswagen">VOLKSWAGEN</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/hyundai.svg"
+              alt="Hyundai">HYUNDAI</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/jeep.svg"
+              alt="Jeep">JEEP</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/nissan.svg"
+              alt="Nissan">NISSAN</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/mitsubishi.svg"
+              alt="Mitsubishi">MITSUBISHI</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/ford.svg"
+              alt="Ford">FORD</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/kia.svg"
+              alt="Kia">KIA</div>
+        </div>
+
+        <!-- Faixa 2: direita → esquerda (direção reversa) -->
+        <div class="brands-list brands-list--rtl">
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/kia.svg"
+              alt="Kia">KIA</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/ford.svg"
+              alt="Ford">FORD</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/mitsubishi.svg"
+              alt="Mitsubishi">MITSUBISHI</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/nissan.svg"
+              alt="Nissan">NISSAN</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/jeep.svg"
+              alt="Jeep">JEEP</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/hyundai.svg"
+              alt="Hyundai">HYUNDAI</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/volkswagen.svg"
+              alt="Volkswagen">VOLKSWAGEN</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/chevrolet.svg"
+              alt="Chevrolet">CHEVROLET</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/honda.svg"
+              alt="Honda">HONDA</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/toyota.svg"
+              alt="Toyota">TOYOTA</div>
+          <!-- Duplicados -->
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/kia.svg"
+              alt="Kia">KIA</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/ford.svg"
+              alt="Ford">FORD</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/mitsubishi.svg"
+              alt="Mitsubishi">MITSUBISHI</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/nissan.svg"
+              alt="Nissan">NISSAN</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/jeep.svg"
+              alt="Jeep">JEEP</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/hyundai.svg"
+              alt="Hyundai">HYUNDAI</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/volkswagen.svg"
+              alt="Volkswagen">VOLKSWAGEN</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/chevrolet.svg"
+              alt="Chevrolet">CHEVROLET</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/honda.svg"
+              alt="Honda">HONDA</div>
+          <div class="brand-item"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/toyota.svg"
+              alt="Toyota">TOYOTA</div>
+        </div>
+      </div>
+  </section>
+
+  <!-- ===== SOBRE / DEPOIMENTOS ===== -->
+  <section class="about" id="sobre">
+    <div class="container about__inner">
+      <div class="about__image">
+        <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=800&q=80"
+          alt="Showroom Menelli Veículos" />
+        <div class="about__badge">
+          <strong>15</strong>
+          <span>Anos de tradição</span>
+        </div>
+      </div>
+      <div class="about__text">
+        <span class="section-tag">Quem Somos</span>
+        <h2 class="section-title">A <span>Menelli Veículos</span> é referência em Linhares</h2>
+        <p>Fundada em 2009, a Menelli Veículos nasceu com o propósito de transformar a experiência de compra de
+          automóveis em São Paulo. Acreditamos que adquirir um veículo deve ser um momento de alegria, sem burocracia e
+          com total transparência.</p>
+        <p>Nossa equipe é formada por especialistas apaixonados por automóveis, prontos para encontrar o veículo
+          perfeito para você — seja para o dia a dia, para a família ou para o trabalho.</p>
+        <div class="about__items">
+          <div class="about__item"><i class="fas fa-map-marker-alt"></i> Localização privilegiada no coração de SP</div>
+          <div class="about__item"><i class="fas fa-certificate"></i> Veículos certificados com laudo cautelar</div>
+          <div class="about__item"><i class="fas fa-star"></i> 4.9 no Google com mais de 3.000 avaliações</div>
+        </div>
+        <a href="#contato" class="btn btn--gold">Agendar Visita</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DEPOIMENTOS ===== -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Depoimentos</span>
+        <h2 class="section-title">O que nossos <span>clientes dizem</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi-card">
+          <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+              class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Experiência incrível do começo ao fim! Me ajudaram a encontrar o HRV perfeito dentro do meu orçamento.
+            Financiamento aprovado em menos de 2 horas."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">R</div>
+            <div><strong>Ricardo Almeida</strong><span>Guarapari – ES</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+              class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Comprei meu Corolla seminovo e fui muito bem atendida. Transparência total, nenhuma surpresa. Recomendo de
+            olhos fechados para toda a família!"</p>
+          <div class="testi-author">
+            <div class="testi-avatar">F</div>
+            <div><strong>Fernanda Costa</strong><span>Jacupemba – ES</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+              class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"Fui trocar minha Hilux e recebi um valor justo na avaliação. O processo foi simples e rápido. Saí com um
+            veículo novo no mesmo dia. Parabéns à equipe!"</p>
+          <div class="testi-author">
+            <div class="testi-avatar">M</div>
+            <div><strong>Marcos Oliveira</strong><span>Aracruz – ES</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTATO ===== -->
+  <section class="contact" id="contato">
+    <div class="container contact__inner">
+      <div class="contact__info">
+        <span class="section-tag">Contato</span>
+        <h2 class="section-title">Fale com a <span>Menelli</span></h2>
+        <p>Nossa equipe está pronta para te atender. Escolha o canal mais conveniente para você.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <strong>Endereço</strong>
+              <span>Av. Paulista, 1000 – Bela Vista, São Paulo – SP</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <strong>Telefone</strong>
+              <span>(27) 99984-9266</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <strong>WhatsApp</strong>
+              <span>(27) 99984-9266</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <strong>Horário</strong>
+              <span>Seg–Sex: 08h–18h | Sáb: 08h–13h</span>
+            </div>
+          </div>
+        </div>
+        <div class="contact-socials">
+          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+          <a href="https://wa.me/5511940020800" class="social-btn whatsapp" target="_blank"><i
+              class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div class="contact__form">
+        <form id="contactForm">
+          <h3>Envie uma mensagem</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nome completo</label>
+              <input type="text" placeholder="Seu nome" required />
+            </div>
+            <div class="form-group">
+              <label>Telefone / WhatsApp</label>
+              <input type="tel" placeholder="(11) 99999-9999" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" placeholder="seuemail@exemplo.com" />
+          </div>
+          <div class="form-group">
+            <label>Interesse</label>
+            <select>
+              <option>Comprar veículo</option>
+              <option>Vender / Trocar</option>
+              <option>Financiamento</option>
+              <option>Revisão &amp; Serviços</option>
+              <option>Consórcio</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Mensagem</label>
+            <textarea placeholder="Descreva o que você procura..." rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn--gold w-full">Enviar Mensagem <i class="fas fa-paper-plane"></i></button>
+          <div class="form-success" id="formSuccess">
+            <i class="fas fa-check-circle"></i> Mensagem enviada! Entraremos em contato em breve.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAPA ===== -->
+  <div class="map-wrapper">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.369698308744!2d-40.06511719878749!3d-19.39642610938895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb625916a53490f%3A0x66731fcd0daf7912!2sMenelli%20Ve%C3%ADculos!5e0!3m2!1spt-BR!2sbr!4v1778072064534!5m2!1spt-BR!2sbr"
+      width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
   </div>
-</div>
 
-<!-- ============================================================
-     STICKY MOBILE CTA
-============================================================ -->
-<div id="sticky-cta" aria-label="Botão de contato fixo">
-  <button class="sticky-cta-btn" onclick="openWA('Olá! Vim pelo site e quero conhecer os veículos disponíveis.')">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    Falar no WhatsApp agora
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__top">
+      <div class="footer-col footer-col--brand">
+        <a href="#" class="logo logo--footer">
+          <img src="imagens/logo/logo.png" alt="Menelli Veículos" class="logo__img">
+        </a>
+        
+        <p>Realizando sonhos em São Paulo há mais de 15 anos. Transparência, qualidade e as melhores condições do
+          mercado.</p>
+        <div class="footer-socials">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Links Rápidos</h4>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#estoque">Estoque</a></li>
+          <li><a href="#financiamento">Financiamento</a></li>
+          <li><a href="#servicos">Pós-Venda</a></li>
+          <li><a href="#sobre">Quem Somos</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Veículos</h4>
+        <ul>
+          <li><a href="#estoque">Carros 0 km</a></li>
+          <li><a href="#seminovos">Seminovos</a></li>
+          <li><a href="#suvs">SUVs &amp; Crossovers</a></li>
+          <li><a href="#caminhonetes">Caminhonetes</a></li>
+          <li><a href="#">PCD / Deficiente</a></li>
+          <li><a href="#consorcio">Consórcio</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul class="footer-contact">
+          <li><i class="fas fa-phone"></i> (27) 99984-9266</li>
+          <li><i class="fab fa-whatsapp"></i> (27) 99984-9266</li>
+          <li><i class="fas fa-envelope"></i> contato@menelliveiculos.com.br</li>
+          <li><i class="fas fa-map-marker-alt"></i> Av. Paulista, 1000 – SP</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p>© 2024 Menelli Veículos. Todos os direitos reservados.</p>
+        <p>CNPJ: 00.000.000/0001-00 | Av. vitória Nº 1706 - Centro linhares, Linhares, Brazil 29900-081</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== BTN FLUTUANTE WHATSAPP ===== -->
+  <a href="https://wa.me/5511940020800" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-float__badge">Fale conosco</span>
+  </a>
+
+  <!-- ===== BTN VOLTAR AO TOPO ===== -->
+  <button class="back-top" id="backTop" aria-label="Voltar ao topo">
+    <i class="fas fa-chevron-up"></i>
   </button>
-</div>
 
-<!-- ============================================================
-     JAVASCRIPT
-============================================================ -->
-<script src="script.js" defer></script>
+  <!-- ===== MODAL VEÍCULO ===== -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <button class="modal__close" id="modalClose"><i class="fas fa-times"></i></button>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
 
-<!-- Google Analytics placeholder -->
-<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
-
-<!-- Meta Pixel placeholder -->
-<!-- <script>!function(f,b,e,v,n,t,s)...</script> -->
-
+  <script src="script.js"></script>
 </body>
+
 </html>
