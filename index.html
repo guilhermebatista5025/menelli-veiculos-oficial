@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Menelli Veículos — Seu próximo carro está aqui</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -17,20 +17,7 @@
 <body>
 
   <!-- ===== TOP BAR ===== -->
-  <div class="topbar">
-    <div class="container topbar__inner">
-      <div class="topbar__left">
-        <span><i class="fas fa-map-marker-alt"></i> Linhares – ES</span>
-        <span><i class="fas fa-clock"></i> Seg–Sex: 08h–18h | Sáb: 08h–13h</span>
-      </div>
-      <div class="topbar__right">
-        <a href="tel:+551140020800"><i class="fas fa-phone"></i> (27) 99984-9266</a>
-        <a href="https://wa.me/552799984-9266" target="_blank" class="btn-whatsapp-top">
-          <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-      </div>
-    </div>
-  </div>
+
 
   <!-- ===== HEADER / NAV ===== -->
   <header class="header" id="header">
@@ -678,11 +665,37 @@
     </div>
   </footer>
 
-  <!-- ===== BTN FLUTUANTE WHATSAPP ===== -->
-  <a href="https://wa.me/5511940020800" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-    <span class="whatsapp-float__badge">Fale conosco</span>
-  </a>
+<div class="whatsapp-container" id="waButton" onclick="toggleWaModal()">
+    <div class="whatsapp-content">
+        <span class="whatsapp-text">Fale Conosco</span>
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+    </div>
+</div>
+
+<div class="wa-modal" id="waModal">
+    <div class="wa-header">
+        <div class="wa-header-info">
+            <i class="fab fa-whatsapp"></i>
+            <span>Tire suas dúvidas</span>
+        </div>
+        <button class="wa-close" onclick="toggleWaModal()">&times;</button>
+    </div>
+    
+    <div class="wa-body">
+        <div class="wa-msg">Olá! Como podemos ajudar você hoje?</div>
+        
+        <button class="wa-opt" onclick="sendWaMsg('Gostaria de um orçamento direto.')">💸 Orçamento</button>
+        <button class="wa-opt" onclick="sendWaMsg('Quero saber como funciona o serviço.')">🤔 Como funciona?</button>
+        
+        <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+        
+<div class="wa-footer">
+    <input type="text" id="waName" placeholder="Seu nome">
+    <textarea id="waInput" placeholder="Sua dúvida aqui..." rows="2"></textarea>
+    <button class="wa-send-btn" onclick="sendWaInput()">Enviar Mensagem</button>
+</div>
+    </div>
+</div>
 
   <!-- ===== BTN VOLTAR AO TOPO ===== -->
   <button class="back-top" id="backTop" aria-label="Voltar ao topo">
@@ -697,7 +710,8 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="scripts/modal-whatsapp.js"></script>
+  <script src="scripts/script.js"></script>
 </body>
 
 </html>

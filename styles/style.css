@@ -18,9 +18,9 @@
   --white-text: #e8e8e8;
   --gray: #888888;
   --gray-light: #cccccc;
-  --font-display: 'Cormorant Garamond', serif;
-  --font-ui: 'Rajdhani', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-display: "Cormorant Garamond", serif;
+  --font-ui: "Rajdhani", sans-serif;
+  --font-body: "Inter", sans-serif;
   --radius: 8px;
   --radius-lg: 16px;
   --shadow-gold: 0 4px 24px rgba(201, 168, 76, 0.25);
@@ -47,7 +47,7 @@ body {
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.65;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img {
@@ -99,7 +99,6 @@ button {
   padding: 0 24px;
 }
 
-
 /* HEADER E NAVEGAÇÃO */
 
 .header__inner {
@@ -122,7 +121,7 @@ button {
 }
 
 .logo__img {
-  height: 100px;   /* controla tamanho */
+  height: 100px; /* controla tamanho */
   width: auto;
   max-width: 180px; /* evita estourar pro lado */
   object-fit: contain;
@@ -145,7 +144,12 @@ button {
 }
 
 .btn--gold {
-  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  background: linear-gradient(
+    135deg,
+    var(--gold-light),
+    var(--gold),
+    var(--gold-dark)
+  );
   color: var(--black);
   box-shadow: var(--shadow-gold);
 }
@@ -230,76 +234,16 @@ button {
 }
 
 /* ============================================
-   TOP BAR
-   ============================================ */
-.topbar {
-  background: var(--black-2);
-  border-bottom: 1px solid rgba(201, 168, 76, 0.2);
-  font-size: 13px;
-  font-family: var(--font-ui);
-  position: sticky;
-  top: 0;
-  z-index: 1001;
-}
-
-.topbar__inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  gap: 12px;
-}
-
-.topbar__left,
-.topbar__right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.topbar__left span,
-.topbar__right a {
-  color: var(--gray-light);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: color var(--transition);
-}
-
-.topbar__left span i,
-.topbar__right a i {
-  color: var(--gold);
-}
-
-.topbar__right a:hover {
-  color: var(--gold);
-}
-
-.btn-whatsapp-top {
-  background: #25D366;
-  color: var(--white) !important;
-  padding: 4px 14px;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.03em;
-}
-
-.btn-whatsapp-top:hover {
-  background: #1da851 !important;
-  color: #fff !important;
-}
-
-/* ============================================
    HEADER / NAV
    ============================================ */
 .header {
-  position: sticky;
-  top: 38px;
-  z-index: 1000;
-  background: rgba(10, 10, 10, 0.97);
-  backdrop-filter: blur(12px);
+  position: sticky; /* Faz o elemento "grudar" */
+  top: 0; /* Gruda no topo 0 (sem o buraco de 38px) */
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Garante que fique acima das fotos e textos */
+  background: rgba(10, 10, 10, 0.97); /* Cor de fundo */
+  backdrop-filter: blur(12px); /* Efeito de vidro */
   border-bottom: 1px solid rgba(201, 168, 76, 0.15);
   transition: box-shadow var(--transition);
 }
@@ -327,7 +271,12 @@ button {
 .logo__icon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  background: linear-gradient(
+    135deg,
+    var(--gold-light),
+    var(--gold),
+    var(--gold-dark)
+  );
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -495,10 +444,12 @@ button {
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg,
-      rgba(0, 0, 0, 0.88) 0%,
-      rgba(0, 0, 0, 0.6) 50%,
-      rgba(0, 0, 0, 0.2) 100%);
+  background: linear-gradient(
+    105deg,
+    rgba(0, 0, 0, 0.88) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
 }
 
 .hero__content {
@@ -799,7 +750,10 @@ button {
   border-radius: var(--radius-lg);
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
   animation: cardIn 0.5s ease both;
 }
 
@@ -818,7 +772,9 @@ button {
 .car-card:hover {
   transform: translateY(-6px);
   border-color: rgba(201, 168, 76, 0.35);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(201, 168, 76, 0.2);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(201, 168, 76, 0.2);
 }
 
 .car-card__img {
@@ -1015,14 +971,18 @@ button {
 }
 
 .banner-finance::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -100px;
   right: -100px;
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 76, 0.06) 0%,
+    transparent 70%
+  );
   pointer-events: none;
 }
 
@@ -1263,7 +1223,7 @@ button {
 
 .brands-track::before,
 .brands-track::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
@@ -1349,7 +1309,12 @@ button {
   right: -20px;
   width: 110px;
   height: 110px;
-  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  background: linear-gradient(
+    135deg,
+    var(--gold-light),
+    var(--gold),
+    var(--gold-dark)
+  );
   border-radius: 50%;
   display: flex;
   flex-direction: column;
@@ -1442,14 +1407,14 @@ button {
   font-size: 14px;
 }
 
-.testi-card>p {
+.testi-card > p {
   font-size: 14px;
   color: var(--gray-light);
   line-height: 1.7;
   margin-bottom: 20px;
 }
 
-.testi-card>p::before {
+.testi-card > p::before {
   content: '"';
   font-size: 28px;
   color: var(--gold);
@@ -1576,8 +1541,8 @@ button {
 }
 
 .social-btn.whatsapp:hover {
-  background: #25D366;
-  border-color: #25D366;
+  background: #25d366;
+  border-color: #25d366;
   color: #fff;
 }
 
@@ -1789,46 +1754,249 @@ button {
 }
 
 /* ============================================
-   FLOATING BUTTONS
+   WHATSAPP FLOATING SYSTEM
    ============================================ */
-.whatsapp-float {
+
+.whatsapp-container {
   position: fixed;
-  bottom: 80px;
-  right: 24px;
-  z-index: 900;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.whatsapp-content {
+  background-color: #d4af37;
+  height: 60px;
+  max-width: 60px; /* Começa como círculo */
+  border-radius: 30px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: #25D366;
-  color: #fff;
-  border-radius: 50px;
-  padding: 14px 18px;
-  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
-  font-size: 24px;
-  transition: var(--transition);
+  justify-content: flex-end;
+  padding: 0 15px;
+  color: white;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 
-.whatsapp-float:hover {
-  padding-right: 22px;
-  box-shadow: 0 12px 32px rgba(37, 211, 102, 0.5);
+/* Animação do botão expandindo para a esquerda */
+.whatsapp-container:hover .whatsapp-content {
+  max-width: 250px;
 }
 
-.whatsapp-float__badge {
-  font-family: var(--font-ui);
-  font-size: 13px;
-  font-weight: 600;
-  white-space: nowrap;
-  max-width: 0;
-  overflow: hidden;
+.whatsapp-text {
   opacity: 0;
-  transition: max-width 0.4s ease, opacity 0.3s ease;
+  white-space: nowrap;
+  font-weight: bold;
+  margin-right: 10px;
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* Evita que o texto bloqueie o clique */
 }
 
-.whatsapp-float:hover .whatsapp-float__badge {
-  max-width: 140px;
+.whatsapp-container:hover .whatsapp-text {
   opacity: 1;
 }
+
+.whatsapp-icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+/* MODAL DE CHAT (Estilo Premium Gold/Black) */
+.wa-modal {
+  position: fixed;
+  bottom: 100px; /* Acima do botão */
+  right: 20px;
+  width: 400px;
+  height: 500px;
+  background: #1a1a1a; /* Black-2 */
+  border-radius: 15px;
+  border: 1px solid #d4af37; /* Gold */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 10000;
+  
+  /* Animação de entrada */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+/* Quando adicionamos a classe .active via JS */
+.wa-modal.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.wa-header {
+  background: linear-gradient(135deg, #b8860b, #d4af37);
+  color: #000;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.wa-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #000;
+}
+
+.wa-body {
+  padding: 15px;
+  background: #121212;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wa-msg {
+  background: #222;
+  color: #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  border-left: 3px solid #d4af37;
+}
+
+.wa-opt {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #333;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: 0.2s;
+}
+
+.wa-opt:hover {
+  border-color: #d4af37;
+  background: rgba(212, 175, 55, 0.1);
+  transform: translateX(5px);
+}
+
+/* Formulário de Input */
+.wa-footer {
+  padding: 15px;
+  background: #1a1a1a;
+  border-top: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wa-footer input, .wa-footer textarea {
+  background: #000;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.wa-send-btn {
+  background: #d4af37;
+  color: #000;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.wa-send-btn:hover {
+  background: #f1c40f;
+}
+
+.whatsapp-icon {
+    font-size: 30px; /* Tamanho do ícone */
+    color: white;    /* Cor do ícone */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Container do formulário no rodapé */
+.wa-footer {
+    padding: 15px;
+    background: #1a1a1a; /* Fundo combinando com o modal */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 1px solid rgba(212, 175, 55, 0.3); /* Linha divisória sutil */
+}
+
+/* Estilização dos campos de texto */
+.wa-footer input, 
+.wa-footer textarea {
+    width: 100%;
+    background: #222; /* Cinza bem escuro */
+    border: 1px solid #333; /* Borda discreta inicial */
+    color: #fff; /* Texto branco */
+    padding: 12px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Efeito ao clicar no campo (Focus) */
+.wa-footer input:focus, 
+.wa-footer textarea:focus {
+    border-color: #d4af37; /* Borda fica dourada */
+    background: #2a2a2a;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+
+/* Placeholder (aquele texto cinza interno) */
+.wa-footer input::placeholder, 
+.wa-footer textarea::placeholder {
+    color: #777;
+}
+
+/* Botão de enviar dentro do formulário */
+.wa-send-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #b8860b, #d4af37); /* Degradê dourado */
+    color: #000; /* Texto preto para contraste */
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 5px;
+}
+
+.wa-send-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    background: linear-gradient(135deg, #d4af37, #f1c40f);
+}
+
+.wa-send-btn:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   BOTAO DE VOLTAR PARA CIMA | BACK UP
+   ============================================ */
 
 .back-top {
   position: fixed;
@@ -2017,7 +2185,7 @@ button {
 }
 
 .btn--whatsapp {
-  background: #25D366;
+  background: #25d366;
   color: #fff;
   font-family: var(--font-ui);
   font-weight: 600;
@@ -2237,7 +2405,7 @@ button {
    BRANDS / MARCAS
    ============================================ */
 .brands {
-  padding: 80px 0;        /* era 60px, aumentado para a seção respirar mais */
+  padding: 80px 0; /* era 60px, aumentado para a seção respirar mais */
   background: var(--black-2);
   overflow: hidden;
 }
@@ -2247,12 +2415,12 @@ button {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 16px;              /* espaço entre as duas faixas */
+  gap: 16px; /* espaço entre as duas faixas */
 }
 
 .brands-track::before,
 .brands-track::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
@@ -2289,13 +2457,21 @@ button {
 }
 
 @keyframes brandScrollLTR {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes brandScrollRTL {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 /* Item individual */
@@ -2325,7 +2501,9 @@ button {
   object-fit: contain;
   filter: brightness(0) invert(1);
   opacity: 0.35;
-  transition: opacity 0.3s, filter 0.3s;
+  transition:
+    opacity 0.3s,
+    filter 0.3s;
   flex-shrink: 0;
 }
 
@@ -2333,7 +2511,6 @@ button {
   opacity: 1;
   filter: brightness(0) invert(0.75) sepia(1) saturate(4) hue-rotate(5deg);
 }
-
 
 @media (max-width: 480px) {
   .cards-grid {
