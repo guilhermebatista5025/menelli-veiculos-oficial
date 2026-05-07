@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Veículo — Menelli Veículos</title>
+  <meta name="description" id="pageDesc" content="Detalhes do veículo na Menelli Veículos. Veja fotos, especificações e entre em contato." />
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="stylesheet" href="../styles/produto.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <img src="../imagens/logo/logo.png" alt="Menelli Veículos" class="logo__img">
+      </a>
+
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="../index.html" class="nav__link">Início</a></li>
+          <li class="nav__item has-dropdown">
+            <a href="../catalogo.html" class="nav__link active">Estoque <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+              <li><a href="../catalogo.html?tipo=zerokm">Carros 0 km</a></li>
+              <li><a href="../catalogo.html?tipo=seminovo">Seminovos</a></li>
+              <li><a href="catalogo.html?tipo=caminhonete">Caminhonetes</a></li>
+              <li><a href="catalogo.html?tipo=suv">SUVs & Crossovers</a></li>
+            </ul>
+          </li>
+          <li class="nav__item has-dropdown">
+            <a href="index.html#financiamento" class="nav__link">Financiamento <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+              <li><a href="index.html#financiamento">Simule seu crédito</a></li>
+              <li><a href="#">Consórcio</a></li>
+              <li><a href="#">PCD / Deficiente</a></li>
+            </ul>
+          </li>
+          <li class="nav__item"><a href="index.html#sobre" class="nav__link">Quem Somos</a></li>
+          <li class="nav__item"><a href="index.html#contato" class="nav__link">Contato</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== BREADCRUMB ===== -->
+  <div class="breadcrumb-bar">
+    <div class="container breadcrumb-inner">
+      <a href="../index.html"><i class="fas fa-home"></i> Início</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="../catalogo.html">Catálogo</a>
+      <i class="fas fa-chevron-right"></i>
+      <span id="breadcrumbName">Carregando...</span>
+    </div>
+  </div>
+
+  <!-- ===== CONTEÚDO DO PRODUTO ===== -->
+  <div class="produto-layout container" id="produtoLayout">
+
+    <!-- Loading state -->
+    <div class="produto-loading" id="produtoLoading">
+      <div class="loading-spinner"></div>
+      <p>Carregando veículo...</p>
+    </div>
+
+    <!-- Conteúdo real (preenchido via JS) -->
+    <div class="produto-content" id="produtoContent" style="display:none;">
+
+      <!-- GALERIA -->
+      <div class="produto-gallery">
+        <div class="gallery-main">
+          <img id="galleryMain" src="" alt="" />
+          <div class="gallery-badges" id="galleryBadges"></div>
+          <button class="gallery-fav" id="galleryFav" title="Favoritar">
+            <i class="far fa-heart"></i>
+          </button>
+          <button class="gallery-share" id="galleryShare" title="Compartilhar">
+            <i class="fas fa-share-alt"></i>
+          </button>
+        </div>
+        <div class="gallery-thumbs" id="galleryThumbs">
+          <!-- Miniaturas geradas via JS -->
+        </div>
+      </div>
+
+      <!-- INFO DO VEÍCULO -->
+      <div class="produto-info">
+
+        <div class="produto-breadtag" id="produtoBreadtag"></div>
+        <h1 class="produto-nome" id="produtoNome"></h1>
+        <div class="produto-year-tag" id="produtoYearTag"></div>
+
+        <!-- Preço -->
+        <div class="produto-preco-block">
+          <div class="produto-preco-old" id="produtoPrecoOld"></div>
+          <div class="produto-preco" id="produtoPreco"></div>
+          <div class="produto-parcel" id="produtoParcel"></div>
+        </div>
+
+        <!-- Specs rápidas -->
+        <div class="produto-specs-grid" id="produtoSpecsGrid"></div>
+
+        <!-- Descrição -->
+        <div class="produto-desc-block">
+          <h3>Sobre este veículo</h3>
+          <p id="produtoDesc"></p>
+        </div>
+
+        <!-- Opcionais / Equipamentos -->
+        <div class="produto-features" id="produtoFeatures"></div>
+
+        <!-- Ações -->
+        <div class="produto-actions">
+          <button class="btn btn--gold produto-cta-primary" id="btnSaberMais">
+            <i class="fas fa-envelope"></i> Quero saber mais
+          </button>
+          <a href="#" class="btn-whatsapp-produto" id="btnWhatsappProduto" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+
+        <div class="produto-actions-secondary">
+          <button class="btn btn--gold-outline" id="btnFinanciar">
+            <i class="fas fa-calculator"></i> Simular Financiamento
+          </button>
+          <a href="../catalogo.html" class="btn btn--outline">
+            <i class="fas fa-arrow-left"></i> Ver mais veículos
+          </a>
+        </div>
+
+        <!-- Garantias / Selos -->
+        <div class="produto-seals">
+          <div class="seal-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>Laudo Cautelar</span>
+          </div>
+          <div class="seal-item">
+            <i class="fas fa-certificate"></i>
+            <span>Revisado</span>
+          </div>
+          <div class="seal-item">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Aceita Troca</span>
+          </div>
+          <div class="seal-item">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Financiamento</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VEÍCULOS RELACIONADOS -->
+    <section class="relacionados" id="relacionados">
+      <div class="section-header">
+        <span class="section-tag">Veja Também</span>
+        <h2 class="section-title">Veículos <span>Relacionados</span></h2>
+      </div>
+      <div class="relacionados-grid" id="relacionadosGrid"></div>
+    </section>
+
+  </div>
+
+  <!-- ===== MODAL: QUERO SABER MAIS ===== -->
+  <div class="info-modal-overlay" id="infoModalOverlay">
+    <div class="info-modal" id="infoModal">
+
+      <button class="info-modal__close" id="infoModalClose">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="info-modal__header">
+        <div class="info-modal__car-preview" id="infoModalPreview"></div>
+        <div>
+          <p class="info-modal__tag">Interesse no veículo</p>
+          <h2 class="info-modal__title" id="infoModalTitle"></h2>
+          <p class="info-modal__price" id="infoModalPrice"></p>
+        </div>
+      </div>
+
+      <form class="info-modal__form" id="infoForm" novalidate>
+
+        <div class="info-form-row">
+          <div class="info-form-group">
+            <label for="infoNome">
+              <i class="fas fa-user"></i> Nome completo <span class="required">*</span>
+            </label>
+            <input type="text" id="infoNome" placeholder="Seu nome completo" required />
+            <span class="field-error" id="errNome"></span>
+          </div>
+          <div class="info-form-group">
+            <label for="infoTelefone">
+              <i class="fas fa-phone"></i> WhatsApp / Telefone <span class="required">*</span>
+            </label>
+            <input type="tel" id="infoTelefone" placeholder="(27) 99999-9999" required />
+            <span class="field-error" id="errTelefone"></span>
+          </div>
+        </div>
+
+        <div class="info-form-group">
+          <label for="infoEmail">
+            <i class="fas fa-envelope"></i> E-mail
+          </label>
+          <input type="email" id="infoEmail" placeholder="seuemail@exemplo.com" />
+        </div>
+
+        <div class="info-form-row">
+          <div class="info-form-group">
+            <label for="infoInteresse">
+              <i class="fas fa-tag"></i> Interesse
+            </label>
+            <select id="infoInteresse">
+              <option value="compra">Comprar este veículo</option>
+              <option value="financiamento">Financiamento</option>
+              <option value="troca">Trocar meu carro</option>
+              <option value="test-drive">Agendar test drive</option>
+              <option value="duvida">Tirar uma dúvida</option>
+            </select>
+          </div>
+          <div class="info-form-group">
+            <label for="infoContato">
+              <i class="fas fa-comment"></i> Melhor forma de contato
+            </label>
+            <select id="infoContato">
+              <option value="whatsapp">WhatsApp</option>
+              <option value="ligacao">Ligação</option>
+              <option value="email">E-mail</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="info-form-group">
+          <label for="infoMensagem">
+            <i class="fas fa-comment-alt"></i> Mensagem (opcional)
+          </label>
+          <textarea id="infoMensagem" placeholder="Escreva sua dúvida ou mensagem..." rows="3"></textarea>
+        </div>
+
+        <div class="info-form-group info-troca-group" id="trocaGroup" style="display:none;">
+          <label for="infoVeiculoTroca">
+            <i class="fas fa-car"></i> Veículo para troca
+          </label>
+          <input type="text" id="infoVeiculoTroca" placeholder="Ex: Fiat Argo 2022 — Flex" />
+        </div>
+
+        <div class="info-modal__terms">
+          <label class="info-checkbox">
+            <input type="checkbox" id="infoTerms" required />
+            <span>Concordo em receber contato da Menelli Veículos sobre este veículo.</span>
+          </label>
+          <span class="field-error" id="errTerms"></span>
+        </div>
+
+        <button type="submit" class="btn btn--gold w-full info-modal__submit" id="infoSubmitBtn">
+          <i class="fas fa-paper-plane"></i> Enviar minha solicitação
+        </button>
+
+        <!-- Sucesso -->
+        <div class="info-modal__success" id="infoSuccess">
+          <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+          <h3>Solicitação enviada!</h3>
+          <p>Entraremos em contato em breve pelo canal escolhido. Obrigado!</p>
+          <a href="../catalogo.html" class="btn btn--gold">Ver mais veículos</a>
+        </div>
+
+      </form>
+
+      <!-- Contatos rápidos -->
+      <div class="info-modal__quick">
+        <p>Prefere falar agora?</p>
+        <div class="quick-contacts">
+          <a href="https://wa.me/5527999849266" target="_blank" class="quick-contact quick-contact--wa">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="tel:+5527999849266" class="quick-contact quick-contact--tel">
+            <i class="fas fa-phone"></i> (27) 99984-9266
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: SIMULAR FINANCIAMENTO ===== -->
+  <div class="fin-modal-overlay" id="finModalOverlay">
+    <div class="fin-modal" id="finModal">
+      <button class="info-modal__close" id="finModalClose">
+        <i class="fas fa-times"></i>
+      </button>
+      <h2 class="fin-modal__title"><i class="fas fa-calculator"></i> Simulação de Financiamento</h2>
+      <div class="fin-modal__car" id="finModalCar"></div>
+
+      <div class="fin-fields">
+        <div class="calc-field">
+          <label>Valor de entrada (%)</label>
+          <input type="range" id="finEntrada" min="10" max="80" value="20" />
+          <span id="finEntradaVal">20%</span>
+        </div>
+        <div class="calc-field">
+          <label>Número de parcelas</label>
+          <select id="finParcelas">
+            <option>12x</option>
+            <option>24x</option>
+            <option selected>36x</option>
+            <option>48x</option>
+            <option>60x</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="fin-result" id="finResult">
+        <div class="fin-result__row">
+          <span>Valor do veículo</span>
+          <strong id="finValorCar">—</strong>
+        </div>
+        <div class="fin-result__row">
+          <span>Entrada</span>
+          <strong id="finValorEntrada">—</strong>
+        </div>
+        <div class="fin-result__row fin-result__row--main">
+          <span>Parcela estimada</span>
+          <strong id="finValorParcela">—</strong>
+        </div>
+        <p class="fin-disclaimer">* Simulação com taxa de 0,79% a.m. Sujeito a análise de crédito.</p>
+      </div>
+
+      <div class="fin-modal__actions">
+        <button class="btn btn--gold w-full" id="btnFinConfirm">
+          <i class="fab fa-whatsapp"></i> Quero essa proposta
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== WHATSAPP FLUTUANTE ===== -->
+  <div class="whatsapp-container" id="waButton" onclick="toggleWaModal()">
+    <div class="whatsapp-content">
+      <span class="whatsapp-text">Fale Conosco</span>
+      <i class="fab fa-whatsapp whatsapp-icon"></i>
+    </div>
+  </div>
+
+  <div class="wa-modal" id="waModal">
+    <div class="wa-header">
+      <div class="wa-header-info">
+        <i class="fab fa-whatsapp"></i>
+        <span>Tire suas dúvidas</span>
+      </div>
+      <button class="wa-close" onclick="toggleWaModal()">&times;</button>
+    </div>
+    <div class="wa-body">
+      <div class="wa-msg">Olá! Como podemos ajudar você hoje?</div>
+      <button class="wa-opt" onclick="sendWaMsg('Gostaria de um orçamento direto.')">💸 Orçamento</button>
+      <button class="wa-opt" onclick="sendWaMsg('Quero saber como funciona o serviço.')">🤔 Como funciona?</button>
+      <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+      <div class="wa-footer">
+        <input type="text" id="waName" placeholder="Seu nome">
+        <textarea id="waInput" placeholder="Sua dúvida aqui..." rows="2"></textarea>
+        <button class="wa-send-btn" onclick="sendWaInput()">Enviar Mensagem</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BACK TO TOP ===== -->
+  <button class="back-top" id="backTop" aria-label="Voltar ao topo">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="../scripts/modal-whatsapp.js"></script>
+  <script src="../scripts/produto.js"></script>
+</body>
+
+</html>

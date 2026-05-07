@@ -30,12 +30,12 @@
         <ul class="nav__list">
           <li class="nav__item"><a href="#inicio" class="nav__link active">Início</a></li>
           <li class="nav__item has-dropdown">
-            <a href="#estoque" class="nav__link">Estoque <i class="fas fa-chevron-down"></i></a>
+            <a href="pages/catalogo.html" class="nav__link">Estoque <i class="fas fa-chevron-down"></i></a>
             <ul class="dropdown">
-              <li><a href="#estoque">Carros 0 km</a></li>
-              <li><a href="#seminovos">Seminovos</a></li>
-              <li><a href="#caminhonetes">Caminhonetes</a></li>
-              <li><a href="#suvs">SUVs & Crossovers</a></li>
+              <li><a href="pages/catalogo.html?tipo=zerokm">Carros 0 km</a></li>
+              <li><a href="pages/catalogo.html?tipo=seminovo">Seminovos</a></li>
+              <li><a href="pages/catalogo.html?tipo=caminhonete">Caminhonetes</a></li>
+              <li><a href="pages/catalogo.html?tipo=suv">SUVs & Crossovers</a></li>
             </ul>
           </li>
           <li class="nav__item has-dropdown">
@@ -78,8 +78,8 @@
           <p class="hero__sub">As melhores condições de financiamento com taxa a partir de <strong>0,79% ao mês</strong>
           </p>
           <div class="hero__actions">
-            <a href="#estoque" class="btn btn--gold">Ver Estoque</a>
-            <a href="#financiamento" class="btn btn--outline">Simular Financiamento</a>
+            <a href="./pages/catalogo.html" class="btn btn--gold">Ver Estoque</a>
+            <a href="./pages/financiamento.html" class="btn btn--outline">Simular Financiamento</a>
           </div>
         </div>
       </div>
@@ -92,7 +92,7 @@
           <h1 class="hero__title">Seminovos com<br /><span>procedência garantida</span></h1>
           <p class="hero__sub">Laudos, revisão completa e garantia de fábrica em todos os veículos</p>
           <div class="hero__actions">
-            <a href="#seminovos" class="btn btn--gold">Ver Seminovos</a>
+            <a href="./pages/catalogo.html?tipo=seminovo" class="btn btn--gold">Ver Seminovos</a>
             <a href="https://wa.me/5511940020800" class="btn btn--outline" target="_blank"><i
                 class="fab fa-whatsapp"></i> Fale Conosco</a>
           </div>
@@ -107,7 +107,7 @@
           <h1 class="hero__title">SUVs e utilitários<br /><span>para todos os estilos</span></h1>
           <p class="hero__sub">Do campo à cidade, encontre o veículo perfeito para a sua família</p>
           <div class="hero__actions">
-            <a href="#suvs" class="btn btn--gold">Explorar SUVs</a>
+            <a href="./pages/catalogo.html?tipo=suv" class="btn btn--gold">Explorar SUVs</a>
             <a href="#contato" class="btn btn--outline">Agendar Visita</a>
           </div>
         </div>
@@ -232,8 +232,7 @@
       </div>
 
       <div class="inventory__more">
-        <a href="#" class="btn btn--gold-outline" id="loadMore">Carregar mais veículos <i
-            class="fas fa-arrow-down"></i></a>
+        <a href="pages/catalogo.html" class="btn btn--gold-outline">Ver catálogo completo <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
   </section>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo de Veículos — Menelli Veículos</title>
+  <meta name="description" content="Explore o catálogo completo da Menelli Veículos. Filtre por marca, modelo, ano e preço. Os melhores seminovos e 0km de Linhares-ES." />
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="stylesheet" href="../styles/catalogo.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <img src="../imagens/logo/logo.png" alt="Menelli Veículos" class="logo__img">
+      </a>
+
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="index.html" class="nav__link">Início</a></li>
+          <li class="nav__item has-dropdown">
+            <a href="catalogo.html" class="nav__link active">Estoque <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+              <li><a href="catalogo.html?tipo=zerokm">Carros 0 km</a></li>
+              <li><a href="catalogo.html?tipo=seminovo">Seminovos</a></li>
+              <li><a href="catalogo.html?tipo=caminhonete">Caminhonetes</a></li>
+              <li><a href="catalogo.html?tipo=suv">SUVs & Crossovers</a></li>
+            </ul>
+          </li>
+          <li class="nav__item has-dropdown">
+            <a href="index.html#financiamento" class="nav__link">Financiamento <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+              <li><a href="index.html#financiamento">Simule seu crédito</a></li>
+              <li><a href="#">Consórcio</a></li>
+              <li><a href="#">PCD / Deficiente</a></li>
+            </ul>
+          </li>
+          <li class="nav__item"><a href="index.html#sobre" class="nav__link">Quem Somos</a></li>
+          <li class="nav__item"><a href="index.html#contato" class="nav__link">Contato</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="cat-hero">
+    <div class="cat-hero__overlay"></div>
+    <div class="container cat-hero__content">
+      <span class="section-tag">Estoque Completo</span>
+      <h1 class="cat-hero__title">Catálogo de <span>Veículos</span></h1>
+      <p class="cat-hero__sub">Encontre o carro perfeito entre nossos <strong id="totalVehicles">0</strong> veículos disponíveis</p>
+    </div>
+  </section>
+
+  <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+  <div class="cat-layout container">
+
+    <!-- ===== SIDEBAR FILTROS ===== -->
+    <aside class="cat-sidebar" id="catSidebar">
+      <div class="cat-sidebar__header">
+        <h2><i class="fas fa-sliders-h"></i> Filtros</h2>
+        <button class="cat-sidebar__clear" id="btnClearFilters">
+          <i class="fas fa-times"></i> Limpar
+        </button>
+      </div>
+
+      <!-- Busca por palavra-chave -->
+      <div class="filter-group">
+        <label class="filter-group__label">Buscar</label>
+        <div class="filter-search-input">
+          <i class="fas fa-search"></i>
+          <input type="text" id="catSearch" placeholder="Modelo, marca..." />
+        </div>
+      </div>
+
+      <!-- Marca -->
+      <div class="filter-group">
+        <label class="filter-group__label">Marca</label>
+        <div class="brand-pills" id="brandPills">
+          <button class="brand-pill active" data-brand="">Todas</button>
+          <button class="brand-pill" data-brand="Toyota">Toyota</button>
+          <button class="brand-pill" data-brand="Honda">Honda</button>
+          <button class="brand-pill" data-brand="Chevrolet">Chevrolet</button>
+          <button class="brand-pill" data-brand="Volkswagen">VW</button>
+          <button class="brand-pill" data-brand="Hyundai">Hyundai</button>
+          <button class="brand-pill" data-brand="Jeep">Jeep</button>
+          <button class="brand-pill" data-brand="Nissan">Nissan</button>
+          <button class="brand-pill" data-brand="Ford">Ford</button>
+          <button class="brand-pill" data-brand="Mitsubishi">Mitsubishi</button>
+        </div>
+      </div>
+
+      <!-- Tipo / Categoria -->
+      <div class="filter-group">
+        <label class="filter-group__label">Tipo</label>
+        <div class="filter-checkboxes" id="filterTipo">
+          <label class="filter-checkbox">
+            <input type="checkbox" value="zerokm" /> <span>0 km</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" value="seminovo" /> <span>Seminovo</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" value="suv" /> <span>SUV / Crossover</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" value="caminhonete" /> <span>Caminhonete</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Modelo (dinâmico via JS) -->
+      <div class="filter-group" id="modelGroupWrapper">
+        <label class="filter-group__label">Modelo</label>
+        <select id="filterModelo" class="filter-select">
+          <option value="">Todos os modelos</option>
+        </select>
+      </div>
+
+      <!-- Ano -->
+      <div class="filter-group">
+        <label class="filter-group__label">Ano</label>
+        <div class="filter-range-row">
+          <select id="filterAnoMin" class="filter-select filter-select--half">
+            <option value="">De</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+          </select>
+          <span class="filter-range-sep">—</span>
+          <select id="filterAnoMax" class="filter-select filter-select--half">
+            <option value="">Até</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Preço -->
+      <div class="filter-group">
+        <label class="filter-group__label">Faixa de Preço</label>
+        <div class="price-range-display">
+          <span id="priceMinLabel">R$ 0</span>
+          <span id="priceMaxLabel">R$ 500.000+</span>
+        </div>
+        <div class="price-range-track">
+          <input type="range" id="priceRangeMin" min="0" max="500000" step="5000" value="0" />
+          <input type="range" id="priceRangeMax" min="0" max="500000" step="5000" value="500000" />
+          <div class="price-range-fill" id="priceRangeFill"></div>
+        </div>
+      </div>
+
+      <!-- Combustível -->
+      <div class="filter-group">
+        <label class="filter-group__label">Combustível</label>
+        <div class="filter-checkboxes" id="filterCombustivel">
+          <label class="filter-checkbox">
+            <input type="checkbox" value="Flex" /> <span>Flex</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" value="Gasolina" /> <span>Gasolina</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" value="Diesel" /> <span>Diesel</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" value="Elétrico" /> <span>Elétrico</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Câmbio -->
+      <div class="filter-group">
+        <label class="filter-group__label">Câmbio</label>
+        <div class="filter-checkboxes" id="filterCambio">
+          <label class="filter-checkbox">
+            <input type="checkbox" value="Automático" /> <span>Automático</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" value="Manual" /> <span>Manual</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" value="CVT" /> <span>CVT</span>
+          </label>
+        </div>
+      </div>
+
+      <button class="btn btn--gold w-full cat-sidebar__apply" id="btnApplyFilters">
+        <i class="fas fa-search"></i> Aplicar Filtros
+      </button>
+    </aside>
+
+    <!-- ===== ÁREA DE RESULTADOS ===== -->
+    <main class="cat-main">
+
+      <!-- Barra de controles -->
+      <div class="cat-controls">
+        <div class="cat-controls__left">
+          <span class="cat-results-count"><strong id="resultsCount">0</strong> veículos encontrados</span>
+          <!-- Active filters chips -->
+          <div class="active-filters" id="activeFilters"></div>
+        </div>
+        <div class="cat-controls__right">
+          <div class="cat-sort">
+            <label><i class="fas fa-sort"></i></label>
+            <select id="catSort">
+              <option value="default">Relevância</option>
+              <option value="price-asc">Menor preço</option>
+              <option value="price-desc">Maior preço</option>
+              <option value="year-desc">Mais recente</option>
+              <option value="year-asc">Mais antigo</option>
+              <option value="km-asc">Menor KM</option>
+            </select>
+          </div>
+          <div class="view-toggle">
+            <button class="view-btn active" id="viewGrid" title="Grade" aria-label="Visualização em grade">
+              <i class="fas fa-th-large"></i>
+            </button>
+            <button class="view-btn" id="viewList" title="Lista" aria-label="Visualização em lista">
+              <i class="fas fa-list"></i>
+            </button>
+          </div>
+          <!-- Mobile filter toggle -->
+          <button class="btn-filter-mobile" id="btnFilterMobile">
+            <i class="fas fa-sliders-h"></i> Filtros
+          </button>
+        </div>
+      </div>
+
+      <!-- Grid de cards -->
+      <div class="cat-grid" id="catGrid">
+        <!-- Preenchido via JS -->
+      </div>
+
+      <!-- Paginação / Load more -->
+      <div class="cat-pagination" id="catPagination">
+        <button class="cat-load-more" id="catLoadMore">
+          <i class="fas fa-arrow-down"></i> Ver mais veículos
+        </button>
+        <div class="cat-page-info" id="catPageInfo"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ===== OVERLAY FILTROS MOBILE ===== -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ===== WHATSAPP FLUTUANTE ===== -->
+  <div class="whatsapp-container" id="waButton" onclick="toggleWaModal()">
+    <div class="whatsapp-content">
+      <span class="whatsapp-text">Fale Conosco</span>
+      <i class="fab fa-whatsapp whatsapp-icon"></i>
+    </div>
+  </div>
+
+  <div class="wa-modal" id="waModal">
+    <div class="wa-header">
+      <div class="wa-header-info">
+        <i class="fab fa-whatsapp"></i>
+        <span>Tire suas dúvidas</span>
+      </div>
+      <button class="wa-close" onclick="toggleWaModal()">&times;</button>
+    </div>
+    <div class="wa-body">
+      <div class="wa-msg">Olá! Como podemos ajudar você hoje?</div>
+      <button class="wa-opt" onclick="sendWaMsg('Gostaria de um orçamento direto.')">💸 Orçamento</button>
+      <button class="wa-opt" onclick="sendWaMsg('Quero saber como funciona o serviço.')">🤔 Como funciona?</button>
+      <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+      <div class="wa-footer">
+        <input type="text" id="waName" placeholder="Seu nome">
+        <textarea id="waInput" placeholder="Sua dúvida aqui..." rows="2"></textarea>
+        <button class="wa-send-btn" onclick="sendWaInput()">Enviar Mensagem</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BACK TO TOP ===== -->
+  <button class="back-top" id="backTop" aria-label="Voltar ao topo">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="../scripts/modal-whatsapp.js"></script>
+  <script src="../scripts/catalogo.js"></script>
+</body>
+
+</html>
