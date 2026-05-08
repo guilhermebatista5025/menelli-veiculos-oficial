@@ -56,6 +56,11 @@
           </li>
           <li class="nav__item"><a href="#sobre" class="nav__link">Quem Somos</a></li>
           <li class="nav__item"><a href="#contato" class="nav__link">Contato</a></li>
+          <li class="nav__item" id="navUserItem">
+            <a href="pages/login.html" class="nav__link nav__link--user" id="navUserLink" style="display:flex;align-items:center;gap:6px;">
+              <i class="fas fa-user-circle"></i> <span id="navUserLabel">Entrar</span>
+            </a>
+          </li>
         </ul>
       </nav>
 
@@ -709,8 +714,26 @@
     </div>
   </div>
 
+  <script src="scripts/database/data.js"></script>
+  <script src="scripts/admin/auth.js"></script>
+  <script src="scripts/database/user-auth.js"></script>
   <script src="scripts/modal-whatsapp.js"></script>
   <script src="scripts/script.js"></script>
+  <script>
+    /* Atualizar nav com estado do usuário */
+    (function() {
+      const s = UserAuthService.getSession();
+      if (s) {
+        const link = document.getElementById('navUserLink');
+        const label = document.getElementById('navUserLabel');
+        if (link && label) {
+          link.href = 'pages/minha-conta.html';
+          label.textContent = s.nome.split(' ')[0];
+          link.style.color = 'var(--gold-light)';
+        }
+      }
+    })();
+  </script>
 </body>
 
 </html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configurações — Menelli Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../../styles/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .cfg-section { background:var(--card); border:1px solid var(--border2); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; }
+    .cfg-section__header { padding:16px 20px; border-bottom:1px solid var(--border2); display:flex; align-items:center; gap:10px; }
+    .cfg-section__icon { width:36px; height:36px; border-radius:8px; background:var(--gold-dim); display:grid; place-items:center; color:var(--gold); font-size:15px; flex-shrink:0; }
+    .cfg-section__title { font-size:14px; font-weight:700; }
+    .cfg-section__sub   { font-size:12px; color:var(--muted); margin-top:1px; }
+    .cfg-section__body  { padding:20px; }
+    .cfg-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .cfg-row--3 { grid-template-columns:1fr 1fr 1fr; }
+    .cfg-full   { grid-column:1/-1; }
+    .cfg-toggle-row { display:flex; align-items:center; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--border2); }
+    .cfg-toggle-row:last-child { border-bottom:none; }
+    .cfg-toggle-label strong { display:block; font-size:13px; font-weight:600; }
+    .cfg-toggle-label span   { font-size:11px; color:var(--muted); }
+    .preview-box { background:var(--card2); border:1px solid var(--border2); border-radius:8px; padding:14px; margin-top:8px; font-size:12px; color:var(--muted); }
+    @media(max-width:768px){ .cfg-row,.cfg-row--3{ grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="admin-main">
+    <div class="topbar">
+      <div class="topbar__left">
+        <button class="topbar__hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+        <div><div class="topbar__title">Configurações do Site</div><div class="topbar__subtitle" id="topDate"></div></div>
+      </div>
+      <div class="topbar__right">
+        <button class="topbar__btn topbar__btn--outline" onclick="resetConfig()"><i class="fas fa-undo"></i> Restaurar padrões</button>
+        <button class="topbar__btn topbar__btn--gold" onclick="saveAll()"><i class="fas fa-save"></i> Salvar tudo</button>
+      </div>
+    </div>
+
+    <div class="admin-content">
+
+      <!-- Contato -->
+      <div class="cfg-section">
+        <div class="cfg-section__header">
+          <div class="cfg-section__icon"><i class="fas fa-phone-alt"></i></div>
+          <div><div class="cfg-section__title">Contato e Localização</div><div class="cfg-section__sub">Dados exibidos no rodapé, seção de contato e WhatsApp</div></div>
+        </div>
+        <div class="cfg-section__body">
+          <div class="cfg-row">
+            <div class="form-group">
+              <label>Número WhatsApp <span class="req">*</span> <small style="color:var(--muted);">(apenas dígitos, com DDI)</small></label>
+              <input type="text" id="cWhatsapp" class="form-control" placeholder="5527999849266" />
+            </div>
+            <div class="form-group">
+              <label>Exibição do WhatsApp</label>
+              <input type="text" id="cWhatsappDisplay" class="form-control" placeholder="(27) 99984-9266" />
+            </div>
+            <div class="form-group">
+              <label>Telefone fixo</label>
+              <input type="text" id="cTelefone" class="form-control" placeholder="(27) 3333-4444" />
+            </div>
+            <div class="form-group">
+              <label>E-mail</label>
+              <input type="email" id="cEmail" class="form-control" placeholder="contato@menelliveiculos.com.br" />
+            </div>
+            <div class="form-group cfg-full">
+              <label>Endereço completo</label>
+              <input type="text" id="cEndereco" class="form-control" placeholder="Av. Vitória Nº 1706 - Centro, Linhares - ES, 29900-081" />
+            </div>
+            <div class="form-group">
+              <label>Cidade / Região</label>
+              <input type="text" id="cCidade" class="form-control" placeholder="Linhares - ES" />
+            </div>
+            <div class="form-group">
+              <label>CNPJ</label>
+              <input type="text" id="cCnpj" class="form-control" placeholder="00.000.000/0001-00" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Horários -->
+      <div class="cfg-section">
+        <div class="cfg-section__header">
+          <div class="cfg-section__icon"><i class="fas fa-clock"></i></div>
+          <div><div class="cfg-section__title">Horários de Funcionamento</div><div class="cfg-section__sub">Exibido no rodapé e na seção de contato</div></div>
+        </div>
+        <div class="cfg-section__body">
+          <div class="cfg-row">
+            <div class="form-group">
+              <label>Horário (Seg–Sex)</label>
+              <input type="text" id="cHorarioSemana" class="form-control" placeholder="Seg–Sex: 08h–18h" />
+            </div>
+            <div class="form-group">
+              <label>Horário (Sábado)</label>
+              <input type="text" id="cHorarioSabado" class="form-control" placeholder="Sáb: 08h–13h" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Redes Sociais -->
+      <div class="cfg-section">
+        <div class="cfg-section__header">
+          <div class="cfg-section__icon"><i class="fas fa-share-alt"></i></div>
+          <div><div class="cfg-section__title">Redes Sociais</div><div class="cfg-section__sub">URLs completas dos perfis</div></div>
+        </div>
+        <div class="cfg-section__body">
+          <div class="cfg-row">
+            <div class="form-group">
+              <label><i class="fab fa-instagram" style="color:#e1306c;margin-right:4px;"></i> Instagram</label>
+              <input type="url" id="cInstagram" class="form-control" placeholder="https://instagram.com/menelliveiculos" />
+            </div>
+            <div class="form-group">
+              <label><i class="fab fa-facebook-f" style="color:#1877f2;margin-right:4px;"></i> Facebook</label>
+              <input type="url" id="cFacebook" class="form-control" placeholder="https://facebook.com/menelliveiculos" />
+            </div>
+            <div class="form-group">
+              <label><i class="fab fa-youtube" style="color:#ff0000;margin-right:4px;"></i> YouTube</label>
+              <input type="url" id="cYoutube" class="form-control" placeholder="https://youtube.com/@menelliveiculos" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero / Textos -->
+      <div class="cfg-section">
+        <div class="cfg-section__header">
+          <div class="cfg-section__icon"><i class="fas fa-heading"></i></div>
+          <div><div class="cfg-section__title">Textos do Hero (Página Inicial)</div><div class="cfg-section__sub">Título e subtítulo do banner principal</div></div>
+        </div>
+        <div class="cfg-section__body">
+          <div class="cfg-row">
+            <div class="form-group cfg-full">
+              <label>Título do Hero</label>
+              <input type="text" id="cHeroTitulo" class="form-control" placeholder="Realize o sonho do seu carro ideal" />
+            </div>
+            <div class="form-group cfg-full">
+              <label>Subtítulo do Hero</label>
+              <textarea id="cHeroSub" class="form-control" rows="2" placeholder="As melhores condições de financiamento..."></textarea>
+            </div>
+          </div>
+          <div class="preview-box" id="heroPreview">
+            <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">
+              <i class="fas fa-eye" style="margin-right:4px;color:var(--gold);"></i>Preview do Hero
+            </div>
+            <div id="heroPreviewTitle" style="font-size:18px;font-weight:700;margin-bottom:4px;"></div>
+            <div id="heroPreviewSub"   style="font-size:12px;color:rgba(255,255,255,0.5);"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Configurações do Sistema -->
+      <div class="cfg-section">
+        <div class="cfg-section__header">
+          <div class="cfg-section__icon"><i class="fas fa-sliders-h"></i></div>
+          <div><div class="cfg-section__title">Sistema e Comportamento</div><div class="cfg-section__sub">Controles gerais do funcionamento do site</div></div>
+        </div>
+        <div class="cfg-section__body">
+          <div class="cfg-toggle-row">
+            <div class="cfg-toggle-label">
+              <strong><i class="fas fa-circle" style="color:var(--success);font-size:10px;margin-right:6px;"></i> Indicador "Online Agora"</strong>
+              <span>Exibe a bolinha verde de "online" no botão do WhatsApp</span>
+            </div>
+            <label class="toggle"><input type="checkbox" id="cOnlineAgora" /><span class="toggle-slider"></span></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Password -->
+      <div class="cfg-section">
+        <div class="cfg-section__header">
+          <div class="cfg-section__icon" style="background:rgba(229,62,62,0.1);color:var(--danger);"><i class="fas fa-key"></i></div>
+          <div><div class="cfg-section__title">Segurança — Senha de Acesso</div><div class="cfg-section__sub">Altere a senha do painel administrativo</div></div>
+        </div>
+        <div class="cfg-section__body">
+          <div class="cfg-row" style="max-width:480px;">
+            <div class="form-group">
+              <label>Nova senha</label>
+              <input type="password" id="cNewPass" class="form-control" placeholder="Mínimo 6 caracteres" />
+            </div>
+            <div class="form-group">
+              <label>Confirmar senha</label>
+              <input type="password" id="cConfirmPass" class="form-control" placeholder="Repita a nova senha" />
+            </div>
+          </div>
+          <button class="btn btn--outline btn--sm" onclick="changePassword()" style="margin-top:4px;">
+            <i class="fas fa-lock"></i> Alterar senha
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="../../scripts/database/data.js"></script>
+<script src="../../scripts/admin/auth.js"></script>
+<script src="../../scripts/admin/admin-common.js"></script>
+<script src="../../scripts/admin/configuracoes.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financiamentos — Menelli Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../../styles/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="admin-main">
+    <div class="topbar">
+      <div class="topbar__left">
+        <button class="topbar__hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+        <div><div class="topbar__title">Simulações de Financiamento</div><div class="topbar__subtitle" id="topDate"></div></div>
+      </div>
+      <div class="topbar__right">
+        <button class="topbar__btn topbar__btn--outline" onclick="exportCSV()"><i class="fas fa-download"></i> Exportar CSV</button>
+        <button class="topbar__btn topbar__btn--danger btn--danger" onclick="clearAll()" style="background:rgba(229,62,62,0.1);color:var(--danger);border:1px solid rgba(229,62,62,0.3);"><i class="fas fa-trash"></i> Limpar histórico</button>
+      </div>
+    </div>
+
+    <div class="admin-content">
+
+      <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-icon"><i class="fas fa-calculator"></i></div>
+          <div class="kpi-info"><div class="kpi-value" id="kTotal">0</div><div class="kpi-label">Simulações Total</div></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background:rgba(56,161,105,0.15);color:var(--success);"><i class="fas fa-coins"></i></div>
+          <div class="kpi-info"><div class="kpi-value" id="kMediaValor">—</div><div class="kpi-label">Valor Médio</div></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background:rgba(214,158,46,0.15);color:var(--warning);"><i class="fas fa-percent"></i></div>
+          <div class="kpi-info"><div class="kpi-value" id="kMediaEntrada">—</div><div class="kpi-label">Entrada Média</div></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background:rgba(159,122,234,0.15);color:#b794f4;"><i class="fas fa-calendar-alt"></i></div>
+          <div class="kpi-info"><div class="kpi-value" id="kHoje">0</div><div class="kpi-label">Hoje</div></div>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" id="fSearch" placeholder="Buscar por veículo ou nome..." />
+        <select id="fParcelas">
+          <option value="">Todas as parcelas</option>
+          <option>12x</option><option>24x</option><option>36x</option><option>48x</option><option>60x</option>
+        </select>
+        <input type="date" id="fDataInicio" title="Data início" />
+        <input type="date" id="fDataFim"    title="Data fim" />
+        <button class="btn btn--outline btn--sm" onclick="clearFilters()"><i class="fas fa-times"></i> Limpar</button>
+      </div>
+
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Veículo</th>
+              <th>Valor do Bem</th>
+              <th>Entrada</th>
+              <th>Financiado</th>
+              <th>Parcelas</th>
+              <th>Parcela/mês</th>
+              <th>Data</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="finTableBody"></tbody>
+        </table>
+        <div class="pagination">
+          <span id="paginationInfo" style="color:var(--muted);font-size:13px;"></span>
+          <div class="page-btns" id="pageBtns"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<script src="../../scripts/database/data.js"></script>
+<script src="../../scripts/admin/auth.js"></script>
+<script src="../../scripts/admin/admin-common.js"></script>
+<script src="../../scripts/admin/financiamentos.js"></script>
+</body>
+</html>

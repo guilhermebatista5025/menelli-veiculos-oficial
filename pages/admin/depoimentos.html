@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Depoimentos — Menelli Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../../styles/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .testi-preview-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,151,0,0.12);
+      border-radius: 12px; padding: 20px;
+      position: relative; transition: all 0.2s;
+    }
+    .testi-preview-card.inactive { opacity: 0.45; }
+    .testi-preview-card .stars { color: var(--gold); font-size: 14px; margin-bottom: 10px; }
+    .testi-preview-card .stars i { margin-right: 2px; }
+    .testi-preview-card .quote { font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.75); margin-bottom: 14px; font-style: italic; }
+    .testi-preview-card .author { display: flex; align-items: center; gap: 10px; }
+    .testi-preview-card .avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--gold-dim); color: var(--gold); display: grid; place-items: center; font-weight: 700; font-size: 15px; flex-shrink: 0; }
+    .testi-preview-card .author-name  { font-size: 13px; font-weight: 700; }
+    .testi-preview-card .author-city  { font-size: 11px; color: var(--muted); }
+    .testi-preview-card .card-actions { position: absolute; top: 12px; right: 12px; display: flex; gap: 6px; opacity: 0; transition: opacity 0.2s; }
+    .testi-preview-card:hover .card-actions { opacity: 1; }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .badge-active   { background: rgba(56,161,105,0.15); color: #68d391; }
+    .badge-inactive { background: rgba(100,100,100,0.15); color: #888; }
+  </style>
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="admin-main">
+    <div class="topbar">
+      <div class="topbar__left">
+        <button class="topbar__hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+        <div><div class="topbar__title">Depoimentos</div><div class="topbar__subtitle" id="topDate"></div></div>
+      </div>
+      <div class="topbar__right">
+        <button class="topbar__btn topbar__btn--gold" onclick="openModal()"><i class="fas fa-plus"></i> Novo Depoimento</button>
+      </div>
+    </div>
+
+    <div class="admin-content">
+      <div class="section-head" style="margin-bottom:20px;">
+        <div>
+          <h2>Depoimentos do Site</h2>
+          <p style="color:var(--muted);font-size:13px;margin-top:4px;">
+            <span id="cntAtivos">0</span> ativos · <span id="cntTotal">0</span> total — aparece na seção de depoimentos da página inicial
+          </p>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn--outline btn--sm" onclick="filterCards('all')" id="filterAll">Todos</button>
+          <button class="btn btn--outline btn--sm" onclick="filterCards('active')" id="filterActive">Ativos</button>
+          <button class="btn btn--outline btn--sm" onclick="filterCards('inactive')" id="filterInactive">Inativos</button>
+        </div>
+      </div>
+      <div class="testi-grid" id="testiGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Add/Edit -->
+<div class="modal-overlay" id="testiModal">
+  <div class="modal modal--sm">
+    <div class="modal__header">
+      <div class="modal__title" id="testiModalTitle">Novo Depoimento</div>
+      <button class="modal__close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal__body">
+      <div class="form-group" style="margin-bottom:14px;">
+        <label>Nome do cliente <span class="req">*</span></label>
+        <input type="text" id="tNome" class="form-control" placeholder="Ex: Ricardo Almeida" />
+      </div>
+      <div class="form-group" style="margin-bottom:14px;">
+        <label>Cidade / Região</label>
+        <input type="text" id="tCidade" class="form-control" placeholder="Ex: Guarapari - ES" />
+      </div>
+      <div class="form-group" style="margin-bottom:14px;">
+        <label>Depoimento <span class="req">*</span></label>
+        <textarea id="tTexto" class="form-control" rows="4" placeholder="Texto do depoimento..."></textarea>
+      </div>
+      <div class="form-group" style="margin-bottom:16px;">
+        <label>Avaliação</label>
+        <div class="star-rating" id="starRating">
+          <i class="fas fa-star active" data-star="1"></i>
+          <i class="fas fa-star active" data-star="2"></i>
+          <i class="fas fa-star active" data-star="3"></i>
+          <i class="fas fa-star active" data-star="4"></i>
+          <i class="fas fa-star active" data-star="5"></i>
+        </div>
+        <input type="hidden" id="tNota" value="5" />
+      </div>
+      <div class="form-group" style="flex-direction:row;align-items:center;gap:12px;">
+        <label class="toggle">
+          <input type="checkbox" id="tAtivo" checked />
+          <span class="toggle-slider"></span>
+        </label>
+        <div>
+          <div style="font-size:13px;font-weight:600;">Exibir no site</div>
+          <div style="font-size:11px;color:var(--muted);">Quando desativado, o depoimento fica oculto na página inicial</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal__footer">
+      <button class="btn btn--outline" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn--gold" onclick="saveTestimonial()"><i class="fas fa-save"></i> Salvar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="../../scripts/database/data.js"></script>
+<script src="../../scripts/admin/auth.js"></script>
+<script src="../../scripts/admin/admin-common.js"></script>
+<script src="../../scripts/admin/depoimentos.js"></script>
+</body>
+</html>

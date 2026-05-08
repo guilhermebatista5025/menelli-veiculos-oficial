@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Menelli Veículos</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../../styles/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .login-page { position: relative; overflow: hidden; }
+    .login-page::before {
+      content: '';
+      position: fixed; inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(255,151,0,0.05) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(255,151,0,0.03) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .login-card { animation: fadeUp 0.5s ease; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    .brand-line { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 28px; }
+    .brand-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--gold-dim); border: 1px solid var(--gold); display: grid; place-items: center; color: var(--gold); font-size: 22px; }
+    .input-wrap { position: relative; }
+    .input-wrap i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 14px; }
+    .input-wrap .form-control { padding-left: 38px; }
+    .input-wrap .eye-btn { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 14px; transition: color 0.2s; }
+    .input-wrap .eye-btn:hover { color: var(--gold); }
+    .login-footer { text-align: center; margin-top: 24px; font-size: 12px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-card">
+      <div class="brand-line">
+        <div class="brand-icon"><i class="fas fa-car"></i></div>
+        <div>
+          <div style="font-size:16px;font-weight:700;">Menelli Veículos</div>
+          <div style="font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;">Painel Administrativo</div>
+        </div>
+      </div>
+
+      <div class="login-error" id="loginError"><i class="fas fa-exclamation-triangle"></i> <span id="loginErrorMsg"></span></div>
+
+      <form id="loginForm">
+        <div class="form-group" style="margin-bottom:14px;">
+          <label>Usuário</label>
+          <div class="input-wrap">
+            <i class="fas fa-user"></i>
+            <input type="text" id="inputUser" class="form-control" placeholder="admin" autocomplete="username" required />
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:20px;">
+          <label>Senha</label>
+          <div class="input-wrap">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="inputPass" class="form-control" placeholder="••••••••" autocomplete="current-password" required />
+            <button type="button" class="eye-btn" id="eyeBtn"><i class="fas fa-eye" id="eyeIcon"></i></button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn--gold btn--full" id="loginBtn">
+          <i class="fas fa-sign-in-alt"></i> Entrar no painel
+        </button>
+      </form>
+
+      <div class="login-footer">
+        <i class="fas fa-shield-alt" style="color:var(--gold);margin-right:4px;"></i>
+        Acesso restrito · Menelli Veículos © 2024
+      </div>
+    </div>
+  </div>
+
+  <script src="../../scripts/database/data.js"></script>
+  <script src="../../scripts/admin/auth.js"></script>
+  <script>
+    // Redirect se já logado
+    if (AuthService.isAuthenticated()) {
+      window.location.href = 'dashboard.html';
+    }
+
+    // Toggle senha
+    document.getElementById('eyeBtn').addEventListener('click', () => {
+      const input = document.getElementById('inputPass');
+      const icon  = document.getElementById('eyeIcon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fas fa-eye-slash';
+      } else {
+        input.type = 'password';
+        icon.className = 'fas fa-eye';
+      }
+    });
+
+    // Login
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('loginBtn');
+      const errEl = document.getElementById('loginError');
+      const errMsg = document.getElementById('loginErrorMsg');
+
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verificando...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        const user = document.getElementById('inputUser').value.trim();
+        const pass = document.getElementById('inputPass').value;
+        const result = AuthService.login(user, pass);
+
+        if (result.ok) {
+          btn.innerHTML = '<i class="fas fa-check"></i> Sucesso!';
+          btn.style.background = 'var(--success)';
+          setTimeout(() => { window.location.href = 'dashboard.html'; }, 600);
+        } else {
+          errMsg.textContent = result.message;
+          errEl.classList.add('show');
+          btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Entrar no painel';
+          btn.disabled = false;
+          setTimeout(() => errEl.classList.remove('show'), 3500);
+        }
+      }, 500);
+    });
+  </script>
+</body>
+</html>

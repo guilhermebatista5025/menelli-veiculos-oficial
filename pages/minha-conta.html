@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minha Conta — Menelli Veículos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../styles/style.css" />
+  <style>
+    .conta-page { min-height: 100vh; background: var(--black); padding-top: 80px; }
+
+    /* Hero topo */
+    .conta-hero {
+      background: linear-gradient(135deg, #0d0d0d 0%, #1a1200 50%, #0d0d0d 100%);
+      border-bottom: 1px solid rgba(255,151,0,0.12);
+      padding: 40px 0 32px;
+    }
+    .conta-hero__inner { display: flex; align-items: center; gap: 24px; }
+    .conta-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(255,151,0,0.15);
+      border: 2px solid rgba(255,151,0,0.4);
+      display: grid; place-items: center;
+      font-size: 28px; font-weight: 700; color: var(--gold-light);
+      font-family: var(--font-ui); flex-shrink: 0;
+    }
+    .conta-hero__name { font-size: 22px; font-weight: 700; }
+    .conta-hero__email { font-size: 14px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+    .conta-hero__badge { margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; background: rgba(255,151,0,0.1); border: 1px solid rgba(255,151,0,0.2); color: var(--gold-light); padding: 3px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+
+    /* Layout */
+    .conta-layout { display: grid; grid-template-columns: 220px 1fr; gap: 24px; padding: 32px 0 60px; }
+
+    /* Sidebar nav */
+    .conta-sidebar { }
+    .conta-nav { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,151,0,0.08); border-radius: 12px; overflow: hidden; }
+    .conta-nav-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 18px; font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,0.45); cursor: pointer;
+      transition: all 0.2s; border: none; background: none;
+      width: 100%; text-align: left; font-family: var(--font-ui);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .conta-nav-item:last-child { border-bottom: none; }
+    .conta-nav-item:hover { color: var(--white); background: rgba(255,151,0,0.05); }
+    .conta-nav-item.active { color: var(--gold-light); background: rgba(255,151,0,0.08); border-left: 3px solid var(--gold-light); }
+    .conta-nav-item i { width: 18px; text-align: center; }
+    .conta-nav-item .cnt { margin-left: auto; background: var(--gold-light); color: #000; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 20px; }
+
+    /* Content panels */
+    .conta-content { }
+    .conta-panel { display: none; }
+    .conta-panel.active { display: block; }
+
+    .conta-section-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .conta-section-title i { color: var(--gold-light); }
+
+    /* Cards de favoritos */
+    .fav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+    .fav-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,151,0,0.08);
+      border-radius: 12px; overflow: hidden; transition: all 0.2s;
+    }
+    .fav-card:hover { border-color: rgba(255,151,0,0.25); transform: translateY(-2px); }
+    .fav-card img { width: 100%; height: 140px; object-fit: cover; }
+    .fav-card__body { padding: 14px; }
+    .fav-card__brand { font-size: 11px; color: var(--gold-light); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    .fav-card__name { font-size: 14px; font-weight: 700; margin-top: 2px; }
+    .fav-card__price { font-size: 16px; font-weight: 700; color: var(--gold-light); margin-top: 6px; }
+    .fav-card__actions { display: flex; gap: 8px; margin-top: 12px; }
+    .fav-card__actions a, .fav-card__actions button { flex: 1; padding: 7px; border-radius: 6px; font-size: 12px; font-weight: 600; text-align: center; font-family: var(--font-ui); display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.2s; }
+    .btn-ver { background: var(--gold-light); color: #000; text-decoration: none; }
+    .btn-ver:hover { background: #ffb020; }
+    .btn-remfav { background: rgba(229,62,62,0.1); color: #fc8181; border: 1px solid rgba(229,62,62,0.2); cursor: pointer; }
+    .btn-remfav:hover { background: rgba(229,62,62,0.2); }
+
+    /* Simulações */
+    .sim-list { display: flex; flex-direction: column; gap: 12px; }
+    .sim-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,151,0,0.08); border-radius: 12px; padding: 18px; display: flex; align-items: center; gap: 16px; }
+    .sim-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(255,151,0,0.1); display: grid; place-items: center; color: var(--gold-light); font-size: 18px; flex-shrink: 0; }
+    .sim-info { flex: 1; }
+    .sim-veiculo { font-size: 14px; font-weight: 600; }
+    .sim-details { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+    .sim-price { text-align: right; }
+    .sim-price strong { display: block; font-size: 16px; font-weight: 700; color: var(--gold-light); }
+    .sim-price span { font-size: 11px; color: rgba(255,255,255,0.35); }
+
+    /* Leads/Pedidos */
+    .lead-list { display: flex; flex-direction: column; gap: 10px; }
+    .lead-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,151,0,0.08); border-radius: 12px; padding: 16px 18px; display: flex; align-items: center; gap: 14px; }
+    .lead-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .lead-dot--novo { background: #63b3ed; }
+    .lead-dot--atendendo { background: #f6e05e; }
+    .lead-dot--finalizado { background: #68d391; }
+    .lead-info { flex: 1; }
+    .lead-interesse { font-size: 14px; font-weight: 600; }
+    .lead-data { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+    .lead-status { font-size: 12px; font-weight: 600; }
+
+    /* Perfil form */
+    .perfil-form { max-width: 480px; }
+    .perfil-field { margin-bottom: 18px; }
+    .perfil-field label { display: block; font-size: 12px; color: rgba(255,255,255,0.45); font-weight: 500; margin-bottom: 6px; font-family: var(--font-ui); }
+    .perfil-input { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,151,0,0.12); color: var(--white); border-radius: 8px; padding: 11px 14px; font-size: 14px; font-family: var(--font-ui); transition: border-color 0.2s; }
+    .perfil-input:focus { outline: none; border-color: var(--gold-light); }
+    .btn-salvar { background: var(--gold-light); color: #000; border: none; padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: var(--font-ui); transition: background 0.2s; display: flex; align-items: center; gap: 8px; }
+    .btn-salvar:hover { background: #ffb020; }
+    .btn-logout { background: rgba(229,62,62,0.1); border: 1px solid rgba(229,62,62,0.25); color: #fc8181; padding: 11px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: var(--font-ui); display: flex; align-items: center; gap: 8px; margin-top: 24px; transition: background 0.2s; }
+    .btn-logout:hover { background: rgba(229,62,62,0.2); }
+
+    /* Empty */
+    .empty-conta { text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.3); }
+    .empty-conta i { font-size: 40px; color: rgba(255,151,0,0.2); margin-bottom: 12px; display: block; }
+    .empty-conta p { font-size: 14px; margin-bottom: 16px; }
+    .empty-conta a { display: inline-flex; align-items: center; gap: 7px; background: var(--gold-light); color: #000; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 13px; text-decoration: none; font-family: var(--font-ui); }
+
+    @media (max-width: 768px) {
+      .conta-layout { grid-template-columns: 1fr; }
+      .conta-nav { display: flex; overflow-x: auto; border-radius: 8px; }
+      .conta-nav-item { border-bottom: none; border-right: 1px solid rgba(255,255,255,0.04); min-width: 120px; flex-direction: column; gap: 4px; font-size: 11px; padding: 10px; }
+      .conta-nav-item.active { border-left: none; border-bottom: 2px solid var(--gold-light); }
+      .conta-hero__inner { flex-direction: column; text-align: center; }
+      .fav-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="logo">
+        <img src="../imagens/logo/logo.png" alt="Menelli Veículos" class="logo__img">
+      </a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="../index.html" class="nav__link">Início</a></li>
+          <li class="nav__item"><a href="catalogo.html" class="nav__link">Estoque</a></li>
+          <li class="nav__item"><a href="../index.html#financiamento" class="nav__link">Financiamento</a></li>
+          <li class="nav__item"><a href="../index.html#contato" class="nav__link">Contato</a></li>
+          <li class="nav__item"><a href="minha-conta.html" class="nav__link active" style="color:var(--gold-light);">Minha Conta</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="conta-page">
+    <!-- Hero -->
+    <div class="conta-hero">
+      <div class="container">
+        <div class="conta-hero__inner">
+          <div class="conta-avatar" id="heroAvatar">?</div>
+          <div>
+            <div class="conta-hero__name" id="heroName">Carregando...</div>
+            <div class="conta-hero__email" id="heroEmail"></div>
+            <div class="conta-hero__badge"><i class="fas fa-user-check"></i> Conta verificada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layout -->
+    <div class="container">
+      <div class="conta-layout">
+
+        <!-- Sidebar nav -->
+        <div class="conta-sidebar">
+          <nav class="conta-nav">
+            <button class="conta-nav-item active" onclick="showPanel('favoritos')"><i class="fas fa-heart"></i> Favoritos <span class="cnt" id="favCnt">0</span></button>
+            <button class="conta-nav-item" onclick="showPanel('simulacoes')"><i class="fas fa-calculator"></i> Simulações <span class="cnt" id="simCnt">0</span></button>
+            <button class="conta-nav-item" onclick="showPanel('pedidos')"><i class="fas fa-file-alt"></i> Meus Pedidos</button>
+            <button class="conta-nav-item" onclick="showPanel('perfil')"><i class="fas fa-user-cog"></i> Meu Perfil</button>
+          </nav>
+        </div>
+
+        <!-- Content -->
+        <div class="conta-content">
+
+          <!-- Favoritos -->
+          <div class="conta-panel active" id="panel-favoritos">
+            <div class="conta-section-title"><i class="fas fa-heart"></i> Meus Favoritos</div>
+            <div class="fav-grid" id="favGrid">
+              <div class="empty-conta"><i class="fas fa-heart-broken"></i><p>Nenhum favorito ainda</p><a href="catalogo.html"><i class="fas fa-car"></i> Ver catálogo</a></div>
+            </div>
+          </div>
+
+          <!-- Simulações -->
+          <div class="conta-panel" id="panel-simulacoes">
+            <div class="conta-section-title"><i class="fas fa-calculator"></i> Simulações de Financiamento</div>
+            <div class="sim-list" id="simList">
+              <div class="empty-conta"><i class="fas fa-calculator"></i><p>Nenhuma simulação realizada</p><a href="../index.html#financiamento"><i class="fas fa-calculator"></i> Simular agora</a></div>
+            </div>
+          </div>
+
+          <!-- Pedidos / Leads -->
+          <div class="conta-panel" id="panel-pedidos">
+            <div class="conta-section-title"><i class="fas fa-file-alt"></i> Meus Pedidos e Contatos</div>
+            <div class="lead-list" id="leadList">
+              <div class="empty-conta"><i class="fas fa-inbox"></i><p>Nenhuma solicitação enviada ainda</p><a href="catalogo.html"><i class="fas fa-car"></i> Explorar veículos</a></div>
+            </div>
+          </div>
+
+          <!-- Perfil -->
+          <div class="conta-panel" id="panel-perfil">
+            <div class="conta-section-title"><i class="fas fa-user-cog"></i> Meu Perfil</div>
+            <div class="perfil-form">
+              <div class="perfil-field">
+                <label>Nome completo</label>
+                <input type="text" id="pfNome" class="perfil-input" />
+              </div>
+              <div class="perfil-field">
+                <label>E-mail</label>
+                <input type="email" id="pfEmail" class="perfil-input" readonly style="opacity:0.5;cursor:not-allowed;" />
+              </div>
+              <div class="perfil-field">
+                <label>WhatsApp / Telefone</label>
+                <input type="tel" id="pfTel" class="perfil-input" />
+              </div>
+              <div class="perfil-field">
+                <label>Nova senha <small style="color:rgba(255,255,255,0.3);">(deixe vazio para não alterar)</small></label>
+                <input type="password" id="pfPass" class="perfil-input" placeholder="••••••••" />
+              </div>
+              <button class="btn-salvar" onclick="saveProfile()"><i class="fas fa-save"></i> Salvar alterações</button>
+              <button class="btn-logout" onclick="UserAuthService.logout()"><i class="fas fa-sign-out-alt"></i> Sair da conta</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toastWrap" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;"></div>
+
+  <script src="../scripts/database/data.js"></script>
+  <script src="../scripts/admin/auth.js"></script>
+  <script src="../scripts/database/user-auth.js"></script>
+  <script>
+    /* Proteção de rota */
+    UserAuthService.requireAuth('login.html');
+
+    const session = UserAuthService.getSession();
+
+    /* Hero */
+    document.getElementById('heroAvatar').textContent = session.nome[0].toUpperCase();
+    document.getElementById('heroName').textContent   = session.nome;
+    document.getElementById('heroEmail').textContent  = session.email;
+
+    /* Perfil form */
+    document.getElementById('pfNome').value  = session.nome;
+    document.getElementById('pfEmail').value = session.email;
+    document.getElementById('pfTel').value   = session.telefone || '';
+
+    /* ---- Panels ---- */
+    function showPanel(id) {
+      document.querySelectorAll('.conta-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.conta-nav-item').forEach(b => b.classList.remove('active'));
+      document.getElementById('panel-' + id).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    /* ---- Favoritos ---- */
+    function loadFavoritos() {
+      const favIds   = DataService.getFavorites();
+      const vehicles = DataService.getVehicles();
+      const favs     = vehicles.filter(v => favIds.includes(v.id));
+      const grid     = document.getElementById('favGrid');
+      document.getElementById('favCnt').textContent = favs.length;
+
+      if (!favs.length) { grid.innerHTML = '<div class="empty-conta"><i class="fas fa-heart-broken"></i><p>Nenhum favorito ainda</p><a href="catalogo.html"><i class="fas fa-car"></i> Ver catálogo</a></div>'; return; }
+
+      grid.innerHTML = favs.map(v => {
+        const img = v.images?.[0] || '';
+        const src = img.startsWith('http') ? img : `../${img}`;
+        return `<div class="fav-card">
+          <img src="${src}" alt="${v.name}" onerror="this.style.background='#222'" />
+          <div class="fav-card__body">
+            <div class="fav-card__brand">${v.brand}</div>
+            <div class="fav-card__name">${v.name}</div>
+            <div class="fav-card__price">${v.price}</div>
+            <div class="fav-card__actions">
+              <a href="produto.html?id=${v.id}" class="btn-ver"><i class="fas fa-eye"></i> Ver</a>
+              <button class="btn-remfav" onclick="removeFav('${v.id}')"><i class="fas fa-heart-broken"></i></button>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    function removeFav(id) {
+      let favs = DataService.getFavorites().filter(f => f !== id);
+      localStorage.setItem('menelli_favs', JSON.stringify(favs));
+      loadFavoritos();
+      toast('Removido dos favoritos');
+    }
+
+    /* ---- Simulações ---- */
+    function loadSimulacoes() {
+      const sims = DataService.getSimulations().filter(s => s.userEmail === session.email);
+      const list = document.getElementById('simList');
+      document.getElementById('simCnt').textContent = sims.length;
+      if (!sims.length) { list.innerHTML = '<div class="empty-conta"><i class="fas fa-calculator"></i><p>Nenhuma simulação realizada</p><a href="../index.html#financiamento"><i class="fas fa-calculator"></i> Simular agora</a></div>'; return; }
+      list.innerHTML = sims.map(s => `
+        <div class="sim-card">
+          <div class="sim-icon"><i class="fas fa-calculator"></i></div>
+          <div class="sim-info">
+            <div class="sim-veiculo">${s.veiculo || 'Simulação geral'}</div>
+            <div class="sim-details">${s.parcelas || '—'} parcelas · ${s.entrada || '—'}% de entrada · ${new Date(s.createdAt).toLocaleDateString('pt-BR')}</div>
+          </div>
+          <div class="sim-price"><strong>${s.parcelaMensal || '—'}</strong><span>por mês</span></div>
+        </div>`).join('');
+    }
+
+    /* ---- Leads ---- */
+    function loadLeads() {
+      const leads = DataService.getLeads().filter(l => l.email === session.email || l.telefone === session.telefone);
+      const list = document.getElementById('leadList');
+      if (!leads.length) { list.innerHTML = '<div class="empty-conta"><i class="fas fa-inbox"></i><p>Nenhuma solicitação ainda</p><a href="catalogo.html"><i class="fas fa-car"></i> Explorar veículos</a></div>'; return; }
+      const statusColor = { novo:'#63b3ed', atendendo:'#f6e05e', finalizado:'#68d391' };
+      const statusLabel = { novo:'Em análise', atendendo:'Em atendimento', finalizado:'Finalizado' };
+      list.innerHTML = leads.map(l => `
+        <div class="lead-card">
+          <div class="lead-dot lead-dot--${l.status||'novo'}"></div>
+          <div class="lead-info">
+            <div class="lead-interesse">${l.interesse || 'Contato geral'}${l.veiculo ? ` — ${l.veiculo}` : ''}</div>
+            <div class="lead-data">${l.createdAt ? new Date(l.createdAt).toLocaleDateString('pt-BR', {day:'numeric',month:'long',year:'numeric'}) : '—'}</div>
+          </div>
+          <div class="lead-status" style="color:${statusColor[l.status||'novo']}">${statusLabel[l.status||'novo']}</div>
+        </div>`).join('');
+    }
+
+    /* ---- Salvar perfil ---- */
+    function saveProfile() {
+      const nome = document.getElementById('pfNome').value.trim();
+      const tel  = document.getElementById('pfTel').value.trim();
+      if (!nome) { toast('Informe seu nome.', true); return; }
+      UserAuthService.updateProfile({ nome, telefone: tel });
+      document.getElementById('heroName').textContent    = nome;
+      document.getElementById('heroAvatar').textContent  = nome[0].toUpperCase();
+      toast('Perfil atualizado com sucesso!');
+    }
+
+    /* ---- Toast ---- */
+    function toast(msg, err = false) {
+      const el = document.createElement('div');
+      el.style.cssText = `background:${err?'rgba(229,62,62,0.15)':'rgba(0,0,0,0.8)'};border:1px solid ${err?'rgba(229,62,62,0.4)':'rgba(255,151,0,0.3)'};color:${err?'#fc8181':'#fff'};padding:12px 18px;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;font-weight:500;pointer-events:all;min-width:220px;transform:translateX(120%);transition:transform .3s ease;box-shadow:0 4px 20px rgba(0,0,0,0.5);`;
+      el.textContent = msg;
+      document.getElementById('toastWrap').appendChild(el);
+      requestAnimationFrame(() => el.style.transform = 'translateX(0)');
+      setTimeout(() => { el.style.transform = 'translateX(120%)'; setTimeout(() => el.remove(), 300); }, 3000);
+    }
+
+    /* ---- Init ---- */
+    loadFavoritos();
+    loadSimulacoes();
+    loadLeads();
+
+    /* Hamburger */
+    document.getElementById('hamburger').addEventListener('click', () => document.getElementById('nav').classList.toggle('open'));
+
+    window.showPanel   = showPanel;
+    window.removeFav   = removeFav;
+    window.saveProfile = saveProfile;
+  </script>
+</body>
+</html>

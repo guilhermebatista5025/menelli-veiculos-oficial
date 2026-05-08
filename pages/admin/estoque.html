@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estoque — Menelli Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../../styles/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__brand">
+        <div class="sidebar__brand-container">
+          <img src="../../imagens/logo/logo-dashboard.png" alt="Menelli Admin" class="sidebar__logo">
+        </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__section">Painel</div>
+      <a href="dashboard.html" class="sidebar__item"><i class="fas fa-chart-pie"></i> Dashboard</a>
+      <div class="sidebar__section">Gestão</div>
+      <a href="estoque.html" class="sidebar__item active"><i class="fas fa-car"></i> Estoque <span class="sidebar__badge-count" id="sbVehicles">0</span></a>
+      <a href="leads.html" class="sidebar__item"><i class="fas fa-users"></i> Leads <span class="sidebar__badge-count" id="sbLeads" style="background:var(--danger);">0</span></a>
+      <a href="financiamentos.html" class="sidebar__item"><i class="fas fa-calculator"></i> Financiamentos</a>
+      <a href="depoimentos.html" class="sidebar__item"><i class="fas fa-star"></i> Depoimentos</a>
+      <div class="sidebar__section">Sistema</div>
+      <a href="configuracoes.html" class="sidebar__item"><i class="fas fa-cog"></i> Configurações</a>
+      <a href="../../index.html" class="sidebar__item" target="_blank"><i class="fas fa-external-link-alt"></i> Ver site</a>
+    </nav>
+    <div class="sidebar__footer">
+      <div class="sidebar__user">
+        <div class="sidebar__avatar" id="sbAvatar">A</div>
+        <div><div class="sidebar__user-name" id="sbName">Admin</div><div class="sidebar__user-role">Administrador</div></div>
+      </div>
+      <button class="sidebar__logout" onclick="AuthService.logout()"><i class="fas fa-sign-out-alt"></i> Sair</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="admin-main">
+    <div class="topbar">
+      <div class="topbar__left">
+        <button class="topbar__hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+        <div><div class="topbar__title">Gestão de Estoque</div><div class="topbar__subtitle" id="stockCount">Carregando...</div></div>
+      </div>
+      <div class="topbar__right">
+        <button class="topbar__btn topbar__btn--outline" onclick="exportVehicles()"><i class="fas fa-download"></i> Exportar JSON</button>
+        <button class="topbar__btn topbar__btn--gold" onclick="openVehicleModal()"><i class="fas fa-plus"></i> Novo Veículo</button>
+      </div>
+    </div>
+
+    <div class="admin-content">
+      <!-- Filtros -->
+      <div class="filter-bar">
+        <input type="text" id="fSearch" placeholder="🔍  Buscar por marca, modelo..." />
+        <select id="fStatus"><option value="">Todos os status</option><option value="disponivel">Disponível</option><option value="reservado">Reservado</option><option value="vendido">Vendido</option></select>
+        <select id="fCategory"><option value="">Todas as categorias</option><option value="zerokm">0 km</option><option value="seminovo">Seminovo</option><option value="suv">SUV</option><option value="caminhonete">Caminhonete</option></select>
+        <select id="fBrand"><option value="">Todas as marcas</option></select>
+        <select id="fFeatured"><option value="">Todos</option><option value="1">Apenas destaques</option></select>
+        <button class="btn btn--outline btn--sm" onclick="clearFilters()"><i class="fas fa-times"></i> Limpar</button>
+      </div>
+
+      <!-- Tabela -->
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Foto</th>
+              <th>Veículo</th>
+              <th>Categoria</th>
+              <th>Ano / KM</th>
+              <th>Preço</th>
+              <th>Status</th>
+              <th>Destaque</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="vehicleTableBody"></tbody>
+        </table>
+        <div class="pagination">
+          <span id="paginationInfo" style="color:var(--muted);font-size:13px;"></span>
+          <div class="page-btns" id="pageBtns"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL VEÍCULO ===== -->
+<div class="modal-overlay" id="vehicleModal">
+  <div class="modal modal--lg">
+    <div class="modal__header">
+      <div class="modal__title" id="modalVehicleTitle">Novo Veículo</div>
+      <button class="modal__close" onclick="closeVehicleModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal__body">
+
+      <!-- Abas -->
+      <div class="tabs" id="vehicleTabs">
+        <button class="tab active" data-tab="tab-divulgacao"><i class="fas fa-bullhorn"></i> Divulgação</button>
+        <button class="tab" data-tab="tab-estoque"><i class="fas fa-warehouse"></i> Estoque Interno</button>
+        <button class="tab" data-tab="tab-imagens"><i class="fas fa-images"></i> Imagens</button>
+        <button class="tab" data-tab="tab-opcionais"><i class="fas fa-list-check"></i> Opcionais</button>
+      </div>
+
+      <!-- TAB: Divulgação -->
+      <div class="tab-content active" id="tab-divulgacao">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Marca <span class="req">*</span></label>
+            <input type="text" id="vBrand" class="form-control" placeholder="Ex: Toyota" list="brandList" />
+            <datalist id="brandList">
+              <option>Toyota</option><option>Honda</option><option>Chevrolet</option>
+              <option>Volkswagen</option><option>Hyundai</option><option>Jeep</option>
+              <option>Nissan</option><option>Mitsubishi</option><option>Ford</option>
+              <option>Kia</option><option>Renault</option><option>Fiat</option>
+            </datalist>
+          </div>
+          <div class="form-group">
+            <label>Modelo / Nome <span class="req">*</span></label>
+            <input type="text" id="vName" class="form-control" placeholder="Ex: Corolla XEi 2.0 Flex" />
+          </div>
+          <div class="form-group">
+            <label>Categoria <span class="req">*</span></label>
+            <select id="vCategory" class="form-control">
+              <option value="zerokm">0 km</option>
+              <option value="seminovo">Seminovo</option>
+              <option value="suv">SUV / Crossover</option>
+              <option value="caminhonete">Caminhonete</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Ano <span class="req">*</span></label>
+            <input type="number" id="vYear" class="form-control" placeholder="2024" min="1990" max="2030" />
+          </div>
+          <div class="form-group">
+            <label>Quilometragem</label>
+            <input type="text" id="vKm" class="form-control" placeholder="0 (para 0km)" />
+          </div>
+          <div class="form-group">
+            <label>Combustível</label>
+            <select id="vFuel" class="form-control">
+              <option>Flex</option><option>Gasolina</option><option>Diesel</option><option>Elétrico</option><option>Híbrido</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Câmbio</label>
+            <select id="vTransmission" class="form-control">
+              <option>Automático</option><option>Manual</option><option>CVT</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Cor</label>
+            <input type="text" id="vColor" class="form-control" placeholder="Ex: Prata" />
+          </div>
+          <div class="form-group">
+            <label>Preço Atual <span class="req">*</span></label>
+            <input type="text" id="vPrice" class="form-control" placeholder="R$ 0,00" />
+          </div>
+          <div class="form-group">
+            <label>Preço Antigo <small style="color:var(--muted);">(riscado no card)</small></label>
+            <input type="text" id="vPriceOld" class="form-control" placeholder="Deixar vazio se não houver" />
+          </div>
+          <div class="form-group">
+            <label>Parcela Estimada</label>
+            <input type="text" id="vParcel" class="form-control" placeholder="Ex: R$ 2.399/mês" />
+          </div>
+          <div class="form-group">
+            <label>Tag Especial</label>
+            <select id="vTag" class="form-control">
+              <option value="">Nenhuma</option>
+              <option value="Oferta">🔥 Oferta</option>
+              <option value="Novo">✨ Novo</option>
+              <option value="Mais Vendido">⭐ Mais Vendido</option>
+              <option value="Exclusivo">💎 Exclusivo</option>
+            </select>
+          </div>
+          <div class="form-group form-full">
+            <label>Descrição Curta <small style="color:var(--muted);">(aparece nos cards do catálogo — ~120 chars)</small></label>
+            <input type="text" id="vDescCurta" class="form-control" placeholder="Resumo rápido para o card..." maxlength="150" />
+          </div>
+          <div class="form-group form-full">
+            <label>Descrição Completa <small style="color:var(--muted);">(aparece na página do produto)</small></label>
+            <textarea id="vDescription" class="form-control" rows="4" placeholder="Descrição detalhada do veículo..."></textarea>
+          </div>
+          <div class="form-group form-full">
+            <label>Meta Description <small style="color:var(--muted);">(SEO)</small></label>
+            <input type="text" id="vMeta" class="form-control" placeholder="Texto para mecanismos de busca (~160 chars)" maxlength="170" />
+          </div>
+          <div class="form-group form-full" style="flex-direction:row;align-items:center;gap:12px;">
+            <label class="toggle">
+              <input type="checkbox" id="vFeatured" />
+              <span class="toggle-slider"></span>
+            </label>
+            <div><div style="font-size:14px;font-weight:600;">Destaque na Home</div><div style="font-size:12px;color:var(--muted);">Exibe este veículo em posição privilegiada na página inicial</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Estoque Interno -->
+      <div class="tab-content" id="tab-estoque">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Status no Estoque</label>
+            <select id="vStatus" class="form-control">
+              <option value="disponivel">✅ Disponível</option>
+              <option value="reservado">🟡 Reservado</option>
+              <option value="vendido">🔴 Vendido</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Data de Entrada</label>
+            <input type="date" id="vDataEntrada" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Procedência</label>
+            <select id="vProcedencia" class="form-control">
+              <option value="0km">0 km (concessionária)</option>
+              <option value="troca">Troca / Avaliação</option>
+              <option value="compra">Compra Direta</option>
+              <option value="leilao">Leilão</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Custo de Aquisição <span style="color:var(--danger);font-size:11px;">🔒 Interno</span></label>
+            <input type="number" id="vCusto" class="form-control" placeholder="Valor pago pelo veículo" />
+          </div>
+          <div class="form-group form-full">
+            <label>Observações Internas <span style="color:var(--danger);font-size:11px;">🔒 Não aparece no site</span></label>
+            <textarea id="vObs" class="form-control" rows="4" placeholder="Anotações internas, histórico de manutenção, documentos pendentes..."></textarea>
+          </div>
+          <div class="form-group form-full" style="background:var(--card2);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:14px;">
+            <div style="font-size:12px;color:var(--muted);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">💡 Margem Estimada</div>
+            <div id="marginCalc" style="font-size:22px;font-weight:700;color:var(--gold);">—</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:4px;">Calculado automaticamente ao preencher Custo e Preço</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Imagens -->
+      <div class="tab-content" id="tab-imagens">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Adicione URLs de imagens do veículo. A primeira será a imagem principal (thumbnail).</p>
+        <div class="tag-input" style="margin-bottom:12px;">
+          <input type="text" id="imgUrlInput" class="form-control" placeholder="Cole a URL da imagem aqui..." />
+          <button class="btn btn--gold btn--sm" onclick="addImageUrl()"><i class="fas fa-plus"></i> Adicionar</button>
+        </div>
+        <div class="img-preview-grid" id="imgPreviewGrid"></div>
+        <div style="margin-top:16px;padding:12px;background:var(--card2);border-radius:var(--radius-sm);font-size:12px;color:var(--muted);">
+          <i class="fas fa-info-circle" style="color:var(--gold);margin-right:4px;"></i>
+          Sugestão: use links do Google Drive, Dropbox, Imgur ou Cloudinary para imagens de alta qualidade.
+          <br>Formato recomendado: <strong>1200×800px</strong> (proporção 3:2)
+        </div>
+      </div>
+
+      <!-- TAB: Opcionais -->
+      <div class="tab-content" id="tab-opcionais">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Liste os equipamentos e opcionais do veículo. Eles aparecem na página de produto.</p>
+        <div class="tag-input" style="margin-bottom:12px;">
+          <input type="text" id="opcionalInput" class="form-control" placeholder="Ex: Teto Solar, Câmera 360°, Couro..." list="opcionalSuggestions" />
+          <datalist id="opcionalSuggestions">
+            <option>Multimídia</option><option>Câmera de ré</option><option>Câmera 360°</option>
+            <option>Teto Solar</option><option>Couro</option><option>Sensor de estacionamento</option>
+            <option>Carregador wireless</option><option>Controle de estabilidade</option>
+            <option>ABS</option><option>Airbags</option><option>Piloto automático</option>
+            <option>Lane Keep Assist</option><option>ACC</option><option>ADAS</option>
+            <option>4x4</option><option>Turbo</option><option>IPVA pago</option>
+          </datalist>
+          <button class="btn btn--gold btn--sm" onclick="addOpcional()"><i class="fas fa-plus"></i> Adicionar</button>
+        </div>
+        <div class="tag-list" id="opcionaisList"></div>
+        <div style="margin-top:20px;padding:12px;background:var(--card2);border-radius:var(--radius-sm);">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:600;">OPCIONAIS RÁPIDOS</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;" id="quickOpcionais"></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal__footer">
+      <button class="btn btn--outline" onclick="closeVehicleModal()">Cancelar</button>
+      <button class="btn btn--gold" onclick="saveVehicle()"><i class="fas fa-save"></i> Salvar Veículo</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Confirmação de Exclusão -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal modal--sm">
+    <div class="modal__body" style="text-align:center;padding:32px;">
+      <div style="font-size:48px;color:var(--danger);margin-bottom:12px;"><i class="fas fa-exclamation-triangle"></i></div>
+      <h3 style="margin-bottom:8px;">Excluir veículo?</h3>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:24px;">Esta ação não pode ser desfeita. O veículo será removido do estoque e do site.</p>
+      <div style="display:flex;gap:10px;justify-content:center;">
+        <button class="btn btn--outline" onclick="closeConfirmModal()">Cancelar</button>
+        <button class="btn btn--danger" id="confirmDeleteBtn"><i class="fas fa-trash"></i> Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="../../scripts/database/data.js"></script>
+<script src="../../scripts/admin/auth.js"></script>
+<script src="../../scripts/admin/estoque.js"></script>
+</body>
+</html>

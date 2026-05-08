@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leads — Menelli Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../../styles/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <div class="admin-main">
+    <div class="topbar">
+      <div class="topbar__left">
+        <button class="topbar__hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+        <div>
+          <div class="topbar__title">Gestão de Leads</div>
+          <div class="topbar__subtitle" id="topDate"></div>
+        </div>
+      </div>
+      <div class="topbar__right">
+        <button class="topbar__btn topbar__btn--outline" onclick="exportLeads()"><i class="fas fa-download"></i> Exportar CSV</button>
+        <button class="topbar__btn topbar__btn--gold" onclick="openAddLeadModal()"><i class="fas fa-plus"></i> Adicionar Lead</button>
+      </div>
+    </div>
+
+    <div class="admin-content">
+
+      <!-- KPIs rápidos -->
+      <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background:rgba(49,130,206,0.15);color:#63b3ed;"><i class="fas fa-inbox"></i></div>
+          <div class="kpi-info"><div class="kpi-value" id="kNovos">0</div><div class="kpi-label">Novos</div></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background:rgba(214,158,46,0.15);color:#f6e05e;"><i class="fas fa-headset"></i></div>
+          <div class="kpi-info"><div class="kpi-value" id="kAtendendo">0</div><div class="kpi-label">Em Atendimento</div></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background:rgba(56,161,105,0.15);color:#68d391;"><i class="fas fa-check-circle"></i></div>
+          <div class="kpi-info"><div class="kpi-value" id="kFinalizado">0</div><div class="kpi-label">Finalizados</div></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon"><i class="fas fa-users"></i></div>
+          <div class="kpi-info"><div class="kpi-value" id="kTotal">0</div><div class="kpi-label">Total</div></div>
+        </div>
+      </div>
+
+      <!-- Filtros -->
+      <div class="filter-bar">
+        <input type="text" id="fSearch" placeholder="Buscar por nome, telefone, e-mail..." />
+        <select id="fStatus">
+          <option value="">Todos os status</option>
+          <option value="novo">Novo</option>
+          <option value="atendendo">Em Atendimento</option>
+          <option value="finalizado">Finalizado</option>
+        </select>
+        <select id="fInteresse">
+          <option value="">Todos os interesses</option>
+          <option value="Comprar veículo">Comprar veículo</option>
+          <option value="Vender / Trocar">Vender / Trocar</option>
+          <option value="Financiamento">Financiamento</option>
+          <option value="Revisão & Serviços">Revisão e Serviços</option>
+          <option value="Consórcio">Consórcio</option>
+        </select>
+        <input type="date" id="fDataInicio" title="Data início" />
+        <input type="date" id="fDataFim"    title="Data fim" />
+        <button class="btn btn--outline btn--sm" onclick="clearFilters()"><i class="fas fa-times"></i> Limpar</button>
+      </div>
+
+      <!-- Tabela -->
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Contato</th>
+              <th>Interesse</th>
+              <th>Veículo</th>
+              <th>Data</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="leadsTableBody"></tbody>
+        </table>
+        <div class="pagination">
+          <span id="paginationInfo" style="color:var(--muted);font-size:13px;"></span>
+          <div class="page-btns" id="pageBtns"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Adicionar/Editar Lead manualmente -->
+<div class="modal-overlay" id="leadModal">
+  <div class="modal modal--sm">
+    <div class="modal__header">
+      <div class="modal__title" id="leadModalTitle">Novo Lead</div>
+      <button class="modal__close" onclick="closeLeadModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal__body">
+      <div class="form-group" style="margin-bottom:14px;">
+        <label>Nome completo</label>
+        <input type="text" id="lNome" class="form-control" placeholder="Nome do cliente" />
+      </div>
+      <div class="form-group" style="margin-bottom:14px;">
+        <label>Telefone / WhatsApp</label>
+        <input type="tel" id="lTelefone" class="form-control" placeholder="(27) 99999-9999" />
+      </div>
+      <div class="form-group" style="margin-bottom:14px;">
+        <label>E-mail</label>
+        <input type="email" id="lEmail" class="form-control" placeholder="email@exemplo.com" />
+      </div>
+      <div class="form-group" style="margin-bottom:14px;">
+        <label>Interesse</label>
+        <select id="lInteresse" class="form-control">
+          <option>Comprar veículo</option>
+          <option>Vender / Trocar</option>
+          <option>Financiamento</option>
+          <option>Revisão e Serviços</option>
+          <option>Consórcio</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin-bottom:14px;">
+        <label>Veículo de interesse</label>
+        <input type="text" id="lVeiculo" class="form-control" placeholder="Ex: Toyota Corolla 2023" />
+      </div>
+      <div class="form-group">
+        <label>Observações</label>
+        <textarea id="lObs" class="form-control" rows="3" placeholder="Anotações sobre o contato..."></textarea>
+      </div>
+    </div>
+    <div class="modal__footer">
+      <button class="btn btn--outline" onclick="closeLeadModal()">Cancelar</button>
+      <button class="btn btn--gold" onclick="saveLead()"><i class="fas fa-save"></i> Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Detalhes do lead -->
+<div class="modal-overlay" id="leadDetailModal">
+  <div class="modal modal--sm">
+    <div class="modal__header">
+      <div class="modal__title">Detalhes do Lead</div>
+      <button class="modal__close" onclick="closeLeadDetail()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal__body" id="leadDetailBody"></div>
+    <div class="modal__footer">
+      <button class="btn btn--outline" onclick="closeLeadDetail()">Fechar</button>
+      <a id="detailWaBtn" href="#" target="_blank" class="btn btn--gold"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="../../scripts/database/data.js"></script>
+<script src="../../scripts/admin/auth.js"></script>
+<script src="../../scripts/admin/admin-common.js"></script>
+<script src="../../scripts/admin/leads.js"></script>
+</body>
+</html>

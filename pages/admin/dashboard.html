@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Menelli Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../../styles/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <div class="admin-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__brand">
+        <div class="sidebar__brand-container">
+          <img src="../../imagens/logo/logo-dashboard.png" alt="Menelli Admin" class="sidebar__logo">
+        </div>
+      </div>
+      <nav class="sidebar__nav">
+        <div class="sidebar__section">Painel</div>
+        <a href="dashboard.html" class="sidebar__item active"><i class="fas fa-chart-pie"></i> Dashboard</a>
+        <div class="sidebar__section">Gestão</div>
+        <a href="estoque.html" class="sidebar__item"><i class="fas fa-car"></i> Estoque <span
+            class="sidebar__badge-count" id="sbVehicles">0</span></a>
+        <a href="leads.html" class="sidebar__item"><i class="fas fa-users"></i> Leads <span class="sidebar__badge-count"
+            id="sbLeads" style="background:var(--danger);">0</span></a>
+        <a href="financiamentos.html" class="sidebar__item"><i class="fas fa-calculator"></i> Financiamentos</a>
+        <a href="depoimentos.html" class="sidebar__item"><i class="fas fa-star"></i> Depoimentos</a>
+        <div class="sidebar__section">Sistema</div>
+        <a href="configuracoes.html" class="sidebar__item"><i class="fas fa-cog"></i> Configurações</a>
+        <a href="../../index.html" class="sidebar__item" target="_blank"><i class="fas fa-external-link-alt"></i> Ver
+          site</a>
+      </nav>
+      <div class="sidebar__footer">
+        <div class="sidebar__user">
+          <div class="sidebar__avatar" id="sbAvatar">A</div>
+          <div>
+            <div class="sidebar__user-name" id="sbName">Admin</div>
+            <div class="sidebar__user-role">Administrador</div>
+          </div>
+        </div>
+        <button class="sidebar__logout" onclick="AuthService.logout()"><i class="fas fa-sign-out-alt"></i> Sair</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="admin-main">
+      <div class="topbar">
+        <div class="topbar__left">
+          <button class="topbar__hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+          <div>
+            <div class="topbar__title">Dashboard</div>
+            <div class="topbar__subtitle" id="topDate"></div>
+          </div>
+        </div>
+        <div class="topbar__right">
+          <a href="estoque.html" class="topbar__btn topbar__btn--gold"><i class="fas fa-plus"></i> Novo Veículo</a>
+          <button class="topbar__btn topbar__btn--outline" onclick="exportData()"><i class="fas fa-download"></i>
+            Exportar</button>
+        </div>
+      </div>
+
+      <div class="admin-content">
+
+        <!-- KPIs -->
+        <div class="kpi-grid" id="kpiGrid">
+          <div class="kpi-card">
+            <div class="kpi-icon"><i class="fas fa-car"></i></div>
+            <div class="kpi-info">
+              <div class="kpi-value" id="kpiTotal">0</div>
+              <div class="kpi-label">Veículos em Estoque</div>
+              <div class="kpi-sub" id="kpiDisp">0 disponíveis</div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon"><i class="fas fa-users"></i></div>
+            <div class="kpi-info">
+              <div class="kpi-value" id="kpiLeads">0</div>
+              <div class="kpi-label">Total de Leads</div>
+              <div class="kpi-sub" id="kpiLeadsHoje">0 hoje</div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon"><i class="fas fa-calculator"></i></div>
+            <div class="kpi-info">
+              <div class="kpi-value" id="kpiSims">0</div>
+              <div class="kpi-label">Simulações</div>
+              <div class="kpi-sub">Financiamentos simulados</div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon"><i class="fas fa-heart"></i></div>
+            <div class="kpi-info">
+              <div class="kpi-value" id="kpiFavs">0</div>
+              <div class="kpi-label">Favoritos Salvos</div>
+              <div class="kpi-sub">pelos visitantes</div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:rgba(56,161,105,0.15);color:var(--success);"><i
+                class="fas fa-check-circle"></i></div>
+            <div class="kpi-info">
+              <div class="kpi-value" id="kpiDisponivel">0</div>
+              <div class="kpi-label">Disponíveis</div>
+              <div class="kpi-sub" style="color:var(--success);">Prontos para venda</div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:rgba(214,158,46,0.15);color:var(--warning);"><i
+                class="fas fa-clock"></i></div>
+            <div class="kpi-info">
+              <div class="kpi-value" id="kpiReservado">0</div>
+              <div class="kpi-label">Reservados</div>
+              <div class="kpi-sub" style="color:var(--warning);">Em negociação</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gráficos -->
+        <div class="chart-grid">
+          <div class="chart-wrap">
+            <div class="chart-title">Estoque por Categoria</div>
+            <canvas id="chartCategoria" height="200"></canvas>
+            <div class="donut-legend" id="legendCategoria"></div>
+          </div>
+          <div class="chart-wrap">
+            <div class="chart-title">Leads — Últimos 7 Dias</div>
+            <canvas id="chartLeads" height="200"></canvas>
+          </div>
+        </div>
+
+        <!-- Top Veículos + Leads Recentes -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:0;">
+
+          <div class="chart-wrap">
+            <div class="section-head" style="margin-bottom:12px;">
+              <div>
+                <div class="chart-title" style="margin:0;">Top Veículos Visualizados</div>
+              </div>
+              <a href="estoque.html" class="btn btn--ghost btn--sm">Ver todos</a>
+            </div>
+            <div id="topVehicles">
+              <div class="empty-state" style="padding:30px 0;"><i class="fas fa-eye"></i>
+                <p>Nenhuma visualização ainda</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <div class="section-head" style="margin-bottom:12px;">
+              <div>
+                <div class="chart-title" style="margin:0;">Leads Recentes</div>
+              </div>
+              <a href="leads.html" class="btn btn--ghost btn--sm">Ver todos</a>
+            </div>
+            <div id="recentLeads">
+              <div class="empty-state" style="padding:30px 0;"><i class="fas fa-users"></i>
+                <p>Nenhum lead ainda</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="../../scripts/database/data.js"></script>
+  <script src="../../scripts/admin/auth.js"></script>
+  <script src="../../scripts/admin/dashboard.js"></script>
+</body>
+
+</html>
