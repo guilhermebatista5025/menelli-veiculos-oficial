@@ -332,6 +332,13 @@
   appearance: none;
   background: transparent;
   pointer-events: none;
+  outline: none;
+  z-index: 2;
+}
+
+.price-range-track input[type="range"]:active,
+.price-range-track input[type="range"]:focus {
+  z-index: 3;
 }
 
 .price-range-track input[type="range"]::-webkit-slider-thumb {
@@ -348,6 +355,24 @@
 }
 
 .price-range-track input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 16px rgba(201,168,76,0.6);
+}
+
+/* Firefox Support */
+.price-range-track input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--black);
+  cursor: pointer;
+  pointer-events: all;
+  box-shadow: 0 2px 8px rgba(201,168,76,0.4);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.price-range-track input[type="range"]::-moz-range-thumb:hover {
   transform: scale(1.2);
   box-shadow: 0 4px 16px rgba(201,168,76,0.6);
 }

@@ -109,9 +109,24 @@ function initPriceRange() {
   const maxL = document.getElementById('priceMaxLabel');
   const fill = document.getElementById('priceRangeFill');
 
-  function update() {
+  function update(e) {
     let vMin = parseInt(minR.value), vMax = parseInt(maxR.value);
-    if (vMin > vMax) { [minR.value, maxR.value] = [vMax, vMin]; vMin = parseInt(minR.value); vMax = parseInt(maxR.value); }
+    const gap = 5000;
+    
+    if (vMax - vMin < gap) {
+      if (e && e.target.id === 'priceRangeMin') {
+        minR.value = vMax - gap;
+        vMin = parseInt(minR.value);
+      } else if (e && e.target.id === 'priceRangeMax') {
+        maxR.value = vMin + gap;
+        vMax = parseInt(maxR.value);
+      } else {
+        [minR.value, maxR.value] = [vMax, vMin];
+        vMin = parseInt(minR.value);
+        vMax = parseInt(maxR.value);
+      }
+    }
+    
     const range = parseInt(maxR.max) - parseInt(minR.min);
     const leftPct = ((vMin - parseInt(minR.min)) / range) * 100;
     const rightPct = ((parseInt(maxR.max) - vMax) / range) * 100;
